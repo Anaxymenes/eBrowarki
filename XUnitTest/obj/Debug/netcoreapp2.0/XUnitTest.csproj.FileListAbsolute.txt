@@ -1,0 +1,14 @@
+C:\R2D2\Github\Private\eBrowarki\XUnitTest\bin\Debug\netcoreapp2.0\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\R2D2\Github\Private\eBrowarki\XUnitTest\bin\Debug\netcoreapp2.0\xunit.runner.reporters.netcoreapp10.dll
+C:\R2D2\Github\Private\eBrowarki\XUnitTest\bin\Debug\netcoreapp2.0\xunit.runner.utility.netcoreapp10.dll
+C:\R2D2\Github\Private\eBrowarki\XUnitTest\bin\Debug\netcoreapp2.0\XUnitTest.deps.json
+C:\R2D2\Github\Private\eBrowarki\XUnitTest\bin\Debug\netcoreapp2.0\XUnitTest.runtimeconfig.json
+C:\R2D2\Github\Private\eBrowarki\XUnitTest\bin\Debug\netcoreapp2.0\XUnitTest.runtimeconfig.dev.json
+C:\R2D2\Github\Private\eBrowarki\XUnitTest\bin\Debug\netcoreapp2.0\XUnitTest.dll
+C:\R2D2\Github\Private\eBrowarki\XUnitTest\obj\Debug\netcoreapp2.0\XUnitTest.csprojResolveAssemblyReference.cache
+C:\R2D2\Github\Private\eBrowarki\XUnitTest\obj\Debug\netcoreapp2.0\XUnitTest.csproj.CoreCompileInputs.cache
+C:\R2D2\Github\Private\eBrowarki\XUnitTest\obj\Debug\netcoreapp2.0\XUnitTest.AssemblyInfoInputs.cache
+C:\R2D2\Github\Private\eBrowarki\XUnitTest\obj\Debug\netcoreapp2.0\XUnitTest.AssemblyInfo.cs
+C:\R2D2\Github\Private\eBrowarki\XUnitTest\bin\Debug\netcoreapp2.0\XUnitTest.pdb
+C:\R2D2\Github\Private\eBrowarki\XUnitTest\obj\Debug\netcoreapp2.0\XUnitTest.dll
+C:\R2D2\Github\Private\eBrowarki\XUnitTest\obj\Debug\netcoreapp2.0\XUnitTest.pdb
