@@ -13,6 +13,10 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Repository;
+using Repository.Interfaces;
+using Repository.Repositories;
+using Service.Interfaces;
+using Service.Services;
 using Swashbuckle.AspNetCore.Swagger;
 
 namespace WebAPI
@@ -71,6 +75,14 @@ namespace WebAPI
                 .AddJwtBearer(jwtconfig => {
                     jwtconfig.TokenValidationParameters = tokenParams;
                 });
+
+            services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<IRoleService, RoleService>();
+
+            services.AddScoped<IProductService, ProductService>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
