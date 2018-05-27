@@ -14,5 +14,9 @@ namespace Repository.Repositories {
         public IQueryable<Role> GetAll() {
             return _context.Role.AsQueryable();
         }
+
+        public Role GetById(int id) {
+            throw new NotImplementedException();
+        }
     }
 }

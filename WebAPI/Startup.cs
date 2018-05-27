@@ -41,7 +41,7 @@ namespace WebAPI
             services.AddMvc();
             services.AddSwaggerGen(x => {
                 x.SwaggerDoc("v1", new Info {
-                    Title = "eHobby Back-end Api",
+                    Title = "eBrowarki Back-end Api",
                     Description = "Swagger api for eHobby",
                 });
                 var security = new Dictionary<string, IEnumerable<string>>
