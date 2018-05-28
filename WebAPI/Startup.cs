@@ -82,6 +82,18 @@ namespace WebAPI
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IProductRepository, ProductRepository>();
 
+            services.AddScoped<IBeerService, BeerService>();
+            services.AddScoped<IBeerRepository, BeerRepository>();
+
+            services.AddScoped<IBreweryService, BreweryService>();
+            services.AddScoped<IBreweryRepository, BreweryRepository>();
+
+            services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IAccountRepository, AccountRepository>();
+
+            services.AddScoped<IAccountVerificationRepository, AccountVerificationRepository>();
+            services.AddScoped<IAccountVerificationService, AccountVerificationService>();
+
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         }
 

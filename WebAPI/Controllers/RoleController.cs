@@ -18,7 +18,7 @@ namespace WebAPI.Controllers
 
         }
 
-
+        [HttpGet]
         public IActionResult GetAll() {
             List<Role> results = _roleService.GetAll();
             if (results == null)

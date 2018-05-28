@@ -8,7 +8,8 @@ namespace Repository.Interfaces
 {
     public interface IRepository<T> where T:Entity {
 
-        T GetById(int id);
+        IQueryable<T> GetById(int id);
         IQueryable<T> GetAll();
+        T Add(T entity);
     }
 }

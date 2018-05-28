@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Data.DTO.Add;
+using Microsoft.AspNetCore.Mvc;
 using Service.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,19 @@ namespace WebAPI.Controllers
 
         [HttpGet("get/{id}")]
         public IActionResult GetById(int id) {
-            return Ok();
+            return Ok(_productService.GetById(id));
         }
+
+        [HttpGet("getAllBeers")]
+        public IActionResult GetAllBeers() {
+            return Ok(_productService.GetAllProductByType(true));
+        }
+
+        [HttpGet("getAllBrewery")]
+        public IActionResult GetAllBreweries() {
+            return Ok(_productService.GetAllProductByType(false));
+        }
+
+
     }
 }
