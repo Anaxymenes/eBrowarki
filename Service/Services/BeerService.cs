@@ -1,4 +1,6 @@
-﻿using Data.DTO.Add;
+﻿using Data.DBModels;
+using Data.DTO;
+using Data.DTO.Add;
 using Repository.Interfaces;
 using Service.Interfaces;
 using System;
@@ -10,13 +12,36 @@ namespace Service.Services
     public class BeerService : IBeerService {
 
         private readonly IBeerRepository _beerRepository;
+        private readonly IProductRepository _productRepository;
 
-        public BeerService(IBeerRepository beerRepository) {
+        public BeerService(IBeerRepository beerRepository,
+            IProductRepository productRepository) {
             _beerRepository = beerRepository;
+            _productRepository = productRepository;
         }
 
-        public bool Add(BeerAdd beerAdd) {
-            throw new NotImplementedException();
+        public bool Add(BeerAdd beerAdd, List<ClaimDTO> claimsList) {
+            int authorId = Convert.ToInt32(claimsList.Find(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value);
+            Product product = new Product() {
+               AccountId =  authorId,
+               CountryId = beerAdd.CountryId,
+               Date = DateTime.Now,
+               Description = beerAdd.Description,
+               Picture = beerAdd.Picture,
+               Name = beerAdd.Name,
+               IsBeer = true,
+            };
+            var productFromDb = _productRepository.Add(product);
+            Beer beer = new Beer() {
+                Alcohol = beerAdd.Alcohol,
+                BeerTypeId = beerAdd.BeerTypeId,
+                BreweryId = beerAdd.ProducerId,
+                ProductId = productFromDb.Id
+            };
+            if (_beerRepository.Add(beer) != null)
+                return true;
+
+            return false;
         }
     }
 }

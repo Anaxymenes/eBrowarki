@@ -21,7 +21,7 @@ namespace Repository.Repositories
                 _context.SaveChanges();
                 return _context.Brewery.Last();
             }catch(Exception e) {
-                throw new Exception();
+                throw e ;
             }
 
         }
