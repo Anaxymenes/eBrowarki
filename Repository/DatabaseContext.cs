@@ -20,9 +20,10 @@ namespace Repository
         public DbSet<Product> Product { get; set; }
         public DbSet<Brewery> Brewery { get; set; }
         public DbSet<Beer> Beer { get; set; }
+        public DbSet<BeerTypeBeer> BeerTypeBeer { get; set; }
         public DbSet<Vote> Vote { get; set; }
         public DbSet<Comment> Comment { get; set; }
-        public DbSet<BeerTypeBeer> BeerTypeBeer { get; set; }
+        
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {

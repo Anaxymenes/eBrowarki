@@ -22,7 +22,7 @@ namespace XUnitTest
 
             List<Beer> beer = new List<Beer>() {
                 new Beer(){
-                Id=1, Alcohol=5.6,  BeerType = beerTypeList[0],  BeerTypeId = beerTypeList[0].Id, Brewery = breweryList[0], BreweryId = breweryList[0].Id, Product = productList[0], ProductId=productList[0].Id
+                Id=1, Alcohol=5.6,   Brewery = breweryList[0], BreweryId = breweryList[0].Id, Product = productList[0], ProductId=productList[0].Id
                 }
             };
             var productRepository = new Mock<IProductRepository>();
