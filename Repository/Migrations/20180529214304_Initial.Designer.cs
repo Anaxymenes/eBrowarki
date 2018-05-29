@@ -11,8 +11,8 @@ using System;
 namespace Repository.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20180527202717_initial")]
-    partial class initial
+    [Migration("20180529214304_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,6 +29,8 @@ namespace Repository.Migrations
                     b.Property<bool>("Active");
 
                     b.Property<string>("Avatar");
+
+                    b.Property<bool>("Blocked");
 
                     b.Property<string>("Email");
 
@@ -94,15 +96,11 @@ namespace Repository.Migrations
 
                     b.Property<double>("Alcohol");
 
-                    b.Property<int>("BeerTypeId");
-
                     b.Property<int>("BreweryId");
 
                     b.Property<int>("ProductId");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("BeerTypeId");
 
                     b.HasIndex("BreweryId");
 
@@ -122,6 +120,24 @@ namespace Repository.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("BeerType");
+                });
+
+            modelBuilder.Entity("Data.DBModels.BeerTypeBeer", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("BeerId");
+
+                    b.Property<int>("BeerTypeId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("BeerId");
+
+                    b.HasIndex("BeerTypeId");
+
+                    b.ToTable("BeerTypeBeer");
                 });
 
             modelBuilder.Entity("Data.DBModels.Brewery", b =>
@@ -271,11 +287,6 @@ namespace Repository.Migrations
 
             modelBuilder.Entity("Data.DBModels.Beer", b =>
                 {
-                    b.HasOne("Data.DBModels.BeerType", "BeerType")
-                        .WithMany("Beers")
-                        .HasForeignKey("BeerTypeId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.HasOne("Data.DBModels.Brewery", "Brewery")
                         .WithMany("Beers")
                         .HasForeignKey("BreweryId")
@@ -285,6 +296,19 @@ namespace Repository.Migrations
                         .WithOne("Beer")
                         .HasForeignKey("Data.DBModels.Beer", "ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Data.DBModels.BeerTypeBeer", b =>
+                {
+                    b.HasOne("Data.DBModels.Beer", "Beer")
+                        .WithMany("BeerTypeBeers")
+                        .HasForeignKey("BeerId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("Data.DBModels.BeerType", "BeerType")
+                        .WithMany("BeerTypeBeers")
+                        .HasForeignKey("BeerTypeId")
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("Data.DBModels.Brewery", b =>

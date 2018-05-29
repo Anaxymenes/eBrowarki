@@ -12,6 +12,7 @@ namespace Data.DBModels
         public string PasswordSalt { get; set; }
         public string Avatar { get; set; }
         public bool Active { get; set; }
+        public bool Blocked { get; set; }
 
         public Role Role { get; set; }
         public int RoleId { get; set; }

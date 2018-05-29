@@ -44,7 +44,8 @@ namespace Repository.Repositories
                         .ThenInclude(brewery => brewery.Brewery)
                         .ThenInclude(product => product.Product)
                     .Include(beer => beer.Beer)
-                        .ThenInclude(beerType => beerType.BeerType).AsQueryable();
+                        .ThenInclude(beerTypeBeers => beerTypeBeers.BeerTypeBeers)
+                            .AsQueryable();
             if (_context.Product.Any(x => x.IsBeer == isBeer) && isBeer == false)
                 return _context.Product.Where(x => x.IsBeer == isBeer)
                     .Include(comment => comment.Comments)
@@ -71,7 +72,7 @@ namespace Repository.Repositories
                         .ThenInclude(brewery => brewery.Brewery)
                         .ThenInclude(product => product.Product)
                     .Include(beer => beer.Beer)
-                        .ThenInclude(beerType => beerType.BeerType);
+                        .ThenInclude(beerType => beerType.BeerTypeBeers);
             return _context.Product
                     .Include(comment => comment.Comments)
                     .ThenInclude(author => author.Account)

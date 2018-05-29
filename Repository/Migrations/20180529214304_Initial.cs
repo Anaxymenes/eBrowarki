@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Repository.Migrations
 {
-    public partial class initial : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -57,6 +57,7 @@ namespace Repository.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Active = table.Column<bool>(nullable: false),
                     Avatar = table.Column<string>(nullable: true),
+                    Blocked = table.Column<bool>(nullable: false),
                     Email = table.Column<string>(nullable: true),
                     Password = table.Column<string>(nullable: true),
                     PasswordSalt = table.Column<string>(nullable: true),
@@ -234,19 +235,12 @@ namespace Repository.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     Alcohol = table.Column<double>(nullable: false),
-                    BeerTypeId = table.Column<int>(nullable: false),
                     BreweryId = table.Column<int>(nullable: false),
                     ProductId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Beer", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Beer_BeerType_BeerTypeId",
-                        column: x => x.BeerTypeId,
-                        principalTable: "BeerType",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Beer_Brewery_BreweryId",
                         column: x => x.BreweryId,
@@ -259,6 +253,32 @@ namespace Repository.Migrations
                         principalTable: "Product",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BeerTypeBeer",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    BeerId = table.Column<int>(nullable: false),
+                    BeerTypeId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BeerTypeBeer", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BeerTypeBeer_Beer_BeerId",
+                        column: x => x.BeerId,
+                        principalTable: "Beer",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_BeerTypeBeer_BeerType_BeerTypeId",
+                        column: x => x.BeerTypeId,
+                        principalTable: "BeerType",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(
@@ -279,11 +299,6 @@ namespace Repository.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Beer_BeerTypeId",
-                table: "Beer",
-                column: "BeerTypeId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Beer_BreweryId",
                 table: "Beer",
                 column: "BreweryId");
@@ -293,6 +308,16 @@ namespace Repository.Migrations
                 table: "Beer",
                 column: "ProductId",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BeerTypeBeer_BeerId",
+                table: "BeerTypeBeer",
+                column: "BeerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BeerTypeBeer_BeerTypeId",
+                table: "BeerTypeBeer",
+                column: "BeerTypeId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Brewery_ProductId",
@@ -340,13 +365,16 @@ namespace Repository.Migrations
                 name: "AccountVerification");
 
             migrationBuilder.DropTable(
-                name: "Beer");
+                name: "BeerTypeBeer");
 
             migrationBuilder.DropTable(
                 name: "Comment");
 
             migrationBuilder.DropTable(
                 name: "Vote");
+
+            migrationBuilder.DropTable(
+                name: "Beer");
 
             migrationBuilder.DropTable(
                 name: "BeerType");

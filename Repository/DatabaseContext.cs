@@ -22,6 +22,7 @@ namespace Repository
         public DbSet<Beer> Beer { get; set; }
         public DbSet<Vote> Vote { get; set; }
         public DbSet<Comment> Comment { get; set; }
+        public DbSet<BeerTypeBeer> BeerTypeBeer { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
@@ -120,7 +121,7 @@ namespace Repository
                 .ValueGeneratedOnAdd();
 
             modelBuilder.Entity<BeerType>()
-                .HasMany(x => x.Beers)
+                .HasMany(x => x.BeerTypeBeers)
                 .WithOne(c => c.BeerType)
                 .HasForeignKey(b => b.BeerTypeId)
                 .OnDelete(DeleteBehavior.Restrict);
@@ -128,6 +129,12 @@ namespace Repository
             modelBuilder.Entity<Beer>()
                 .Property(x => x.Id)
                 .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Beer>()
+                .HasMany(x => x.BeerTypeBeers)
+                .WithOne(c => c.Beer)
+                .HasForeignKey(f => f.BeerId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Brewery>()
                 .Property(x => x.Id)

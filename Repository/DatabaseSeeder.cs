@@ -375,13 +375,13 @@ namespace Repository
                 var beerList = new List<Beer>(){
                     new Beer {
                         ProductId = context.Product.First(x=>x.Picture=="harnasJasnePelne.png").Id,
-                        BeerTypeId = context.BeerType.First(x=>x.Name == "Pale Lager").Id,
+                        //BeerTypeId = context.BeerType.First(x=>x.Name == "Pale Lager").Id,
                         BreweryId = context.Brewery.First(x=>x.ProductId == context.Product.First(z=>z.Name == "Carlsberg Polska Sp. z o.o.").Id).Id,
                         Alcohol = 6.0,
                     },
                     new Beer {
                         ProductId = context.Product.First(x=>x.Picture=="harnasOkocimski.png").Id,
-                        BeerTypeId = context.BeerType.First(x=>x.Name == "Pale Lager").Id,
+                        //BeerTypeId = context.BeerType.First(x=>x.Name == "Pale Lager").Id,
                         BreweryId = context.Brewery.First(x=>x.ProductId == context.Product.First(z=>z.Name == "Carlsberg Polska Sp. z o.o.").Id).Id,
                         Alcohol = 6.0,
                     }

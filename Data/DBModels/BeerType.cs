@@ -8,6 +8,6 @@ namespace Data.DBModels
     {
         public string Name { get; set; }
 
-        public ICollection<Beer> Beers { get; set; }
+        public ICollection<BeerTypeBeer> BeerTypeBeers { get; set; }
     }
 }

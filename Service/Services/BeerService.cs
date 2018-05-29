@@ -34,7 +34,7 @@ namespace Service.Services
             var productFromDb = _productRepository.Add(product);
             Beer beer = new Beer() {
                 Alcohol = beerAdd.Alcohol,
-                BeerTypeId = beerAdd.BeerTypeId,
+                //BeerTypeId = beerAdd.BeerTypeId,
                 BreweryId = beerAdd.ProducerId,
                 ProductId = productFromDb.Id
             };

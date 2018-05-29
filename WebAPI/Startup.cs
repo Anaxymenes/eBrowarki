@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -38,6 +39,7 @@ namespace WebAPI
                 options.UseSqlServer(Configuration.GetConnectionString("Default"),
                 b => b.MigrationsAssembly("Repository"))
             );
+            services.AddAutoMapper();
             services.AddMvc();
             services.AddSwaggerGen(x => {
                 x.SwaggerDoc("v1", new Info {
@@ -110,6 +112,7 @@ namespace WebAPI
                 .AllowCredentials());
 
             app.UseAuthentication();
+            
             app.UseMvc();
             app.UseSwagger();
             app.UseSwaggerUI(x =>

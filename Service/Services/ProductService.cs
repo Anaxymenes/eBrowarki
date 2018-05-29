@@ -68,7 +68,7 @@ namespace Service.Services
             if (result.IsBeer == true) {
                 BeerDTO beerDTO = new BeerDTO() {
                     Alcohol = result.Beer.Alcohol,
-                    BeerType = result.Beer.BeerType.Name,
+                    //BeerType = result.Beer.BeerType.Name,
                     Producer = result.Beer.Brewery.Product.Name,
                     ProducerId = result.Beer.Brewery.Product.Id
                 };
