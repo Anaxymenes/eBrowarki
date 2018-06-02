@@ -61,8 +61,8 @@ namespace Service.Config
                 .ForMember(dest => dest.CountryId,
                 opt => opt.MapFrom(src => src.CountryId))
                 ;
-
-            CreateMap<AccountDTO, Account>()
+            
+            CreateMap<Account, AccountDTO>()
                 .ForMember(dest => dest.Id,
                 opt => opt.MapFrom(src => src.Id))
                 .ForMember(dest => dest.Username,
@@ -71,8 +71,8 @@ namespace Service.Config
                 opt => opt.MapFrom(src => src.Email))
                 .ForMember(dest => dest.Avatar,
                 opt => opt.MapFrom(src => src.Avatar))
-                .ForMember(dest => dest.Role.Name,
-                opt => opt.MapFrom(src => src.Role))
+                .ForMember(dest => dest.Role,
+                opt => opt.MapFrom(src => src.Role.Name))
                 ;
 
             CreateMap<AccountLoginVerificationDTO, Account>()
