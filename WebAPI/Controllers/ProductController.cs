@@ -22,14 +22,19 @@ namespace WebAPI.Controllers
             return Ok(_productService.GetBeerById(id));
         }
 
-        [HttpGet("getAllBeers")]
-        public IActionResult GetAllBeers() {
-            return Ok(_productService.GetAllProductByType(true));
+        [HttpGet("getBrewery/{id}")]
+        public IActionResult GetBreweryById(int id) {
+            return Ok(_productService.GetBreweryById(id));
         }
 
-        [HttpGet("getAllBrewery")]
-        public IActionResult GetAllBreweries() {
-            return Ok(_productService.GetAllProductByType(false));
+        [HttpGet("getAllBeers/{itemsOnPage}/{page}")]
+        public IActionResult GetAllBeers(int page, int itemsOnPage) {
+            return Ok(_productService.GetAllProductByType(true, page, itemsOnPage));
+        }
+
+        [HttpGet("getAllBrewery/{itemsOnPage}/{page}")]
+        public IActionResult GetAllBreweries(int page, int itemsOnPage) {
+            return Ok(_productService.GetAllProductByType(false, page, itemsOnPage));
         }
 
 

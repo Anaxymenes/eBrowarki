@@ -20,8 +20,5 @@ namespace Repository.Repositories
             throw new NotImplementedException();
         }
 
-        IQueryable<T> IRepository<T>.GetBeerById(int id) {
-            throw new NotImplementedException();
-        }
     }
 }

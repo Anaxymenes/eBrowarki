@@ -9,7 +9,6 @@ namespace Service.Interfaces
     public interface IProductService {
         ProductDTO GetBeerById(int id);
         ProductDTO GetBreweryById(int id);
-        List<ProductDTO> GetAllProductByType(bool isBeer);
-
+        List<ProductDTO> GetAllProductByType(bool v, int page, int itemsOnPage);
     }
 }

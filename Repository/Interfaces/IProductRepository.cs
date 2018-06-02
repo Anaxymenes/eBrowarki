@@ -7,10 +7,10 @@ using System.Text;
 namespace Repository.Interfaces
 {
     public interface IProductRepository : IRepository<Product> {
-        IQueryable<Product> GetAllBreweries();
-        IQueryable<Product> GetAllBeers();
-        IQueryable<Product> GetBeerById();
-        IQueryable<Product> GetBreweryById();
+        IQueryable<Product> GetAllBreweries(int page, int itemsOnPage);
+        IQueryable<Product> GetAllBeers(int page, int itemsOnPage);
+        IQueryable<Product> GetBeerById(int id);
+        IQueryable<Product> GetBreweryById(int id);
         IQueryable<Product> GetAllBeersByBeerType(string beerType);
     }
 }

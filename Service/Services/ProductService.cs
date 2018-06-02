@@ -21,23 +21,15 @@ namespace Service.Services
             _mapper = mapper;
         }
 
-        public List<ProductDTO> GetAllProductByType(bool isBeer) {
-            //var resultsFromDB = _productRepository.GetAllBeers(isBeer);
-            //if (resultsFromDB == null)
-            //    return null;
-            //List<ProductDTO> results = new List<ProductDTO>();
-            //foreach (var obj in resultsFromDB)
-            //    results.Add(this.GetProductDTO(obj));
-
-            //return results;
+        public List<ProductDTO> GetAllProductByType(bool isBeer, int page, int itemsOnPage) {
             List<ProductDTO> results = new List<ProductDTO>();
             if (isBeer) {
-                var temp = _productRepository.GetAllBeers();
+                var temp = _productRepository.GetAllBeers(page, itemsOnPage);
                 foreach (var obj in temp)
                     results.Add(_mapper.Map<ProductDTO>(obj));
                 
             } else {
-                var res = _productRepository.GetAllBreweries();
+                var res = _productRepository.GetAllBreweries(page, itemsOnPage);
                 foreach (var obj in res)
                     results.Add(_mapper.Map<ProductDTO>(obj));
             }
@@ -45,7 +37,7 @@ namespace Service.Services
         }
 
         public ProductDTO GetBeerById(int id) {
-            return this.GetProductDTO(_productRepository.GetBeerById(id).First());
+            return _mapper.Map<ProductDTO>(_productRepository.GetBeerById(id).First());
         }
 
         public ProductDTO GetBreweryById(int id) {
