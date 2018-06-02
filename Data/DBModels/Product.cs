@@ -9,6 +9,7 @@ namespace Data.DBModels
         public string Name { get; set; }
         public string Description { get; set; }
         public string Picture { get; set; }
+        public bool Approved { get; set; }
         public DateTime Date { get; set; }
         public bool IsBeer { get; set; }
 
@@ -21,5 +22,6 @@ namespace Data.DBModels
 
         public ICollection<Vote> Votes { get; set; }
         public ICollection<Comment> Comments { get; set; }
+        public ICollection<BeerTypeBeer> BeerTypeBeers { get; set; }
     }
 }

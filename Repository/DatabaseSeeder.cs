@@ -51,6 +51,8 @@ namespace Repository
                         new BeerType{ Name = "Lager"},
                         new BeerType{ Name = "Ice Lager"},
                         new BeerType{ Name = "Pale Lager"},
+                        new BeerType{ Name = "Sour Ale" },
+                        new BeerType { Name = "Christmas/Winter Specialty Spiced Beer"},
                     };
                 context.AddRange(beerTypeList);
                 context.SaveChanges();
@@ -339,6 +341,7 @@ namespace Repository
                         Picture="harnasJasnePelne.png",
                         Name="Harnaś Jasne pełne",
                         Description = "Szlachetne męskie piwo pełne siły, humoru i pogody ducha. Orzeźwia i cieszy swoim wyjątkowym smakiem i aromatem. Idealne po pracy. ",
+                        Approved = true
                     },
                     new Product {
                         AccountId = context.Account.First(x=>x.Username == "admin").Id,
@@ -348,7 +351,17 @@ namespace Repository
                         Picture="harnasOkocimski.png",
                         Name="Harnaś Okocimski",
                         Description = "Piwo jasne pełne, którego sprawdzona receptura jest sekretem jakości. To piwo stanowi doskonałe połączenie składników oraz gwarantuje jego głęboki i pełny smak. To oczywiście slogan producenta. Jest standardową propozycją, która nie odbiega znacząco od średniej. Producent piwa akcentuje, że kupując Harnasia wspierasz tatrzańskie drapieżniki.",
-
+                        Approved = true
+                    },
+                    new Product {
+                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        Date = DateTime.Now,
+                        CountryId = context.Country.First(x=>x.Name=="Poland").Id,
+                        IsBeer=true,
+                        Picture="harnasGrzaniec.png",
+                        Name="Harnaś Grzaniec",
+                        Description = "Piwo idealne na zimę ! Dostępne tylko w sieci Lidl. Producent mówi o tym piwie, że jest znakomite do wypicia zarówno na zimno, jak i w postaci grzańca. Kolor ciemnozłoty, wręcz rdzawy. Piana wysoka i dosyć gęsta, szybko opada do cieniutkiej warstwy; koloru kremowobiałego. Nasycenie dosyć spore, nie szczypie jednak w język. Zapach wyraźny, intensywny. Mieszają się w nim nuty cynamonowo-goździkowe, nieco ziołowy. W zapachu i smaku niestety wyczuwa się alkohol. Poza tym pojawiają się w smaku nuty goździkowe, cynamonowe, owocowe i lekka goryczka chmielowa. Poza tym piwo jest intensywnie słodkie. Jest to piwo z zaprawą o smaku korzennym, według informacji producenta.",
+                        Approved = false
                     }
                 };
 
@@ -384,9 +397,31 @@ namespace Repository
                         //BeerTypeId = context.BeerType.First(x=>x.Name == "Pale Lager").Id,
                         BreweryId = context.Brewery.First(x=>x.ProductId == context.Product.First(z=>z.Name == "Carlsberg Polska Sp. z o.o.").Id).Id,
                         Alcohol = 6.0,
+                    },
+                    new Beer {
+                        ProductId = context.Product.First(x=>x.Picture=="harnasGrzaniec.png").Id,
+                        //BeerTypeId = context.BeerType.First(x=>x.Name == "Pale Lager").Id,
+                        BreweryId = context.Brewery.First(x=>x.ProductId == context.Product.First(z=>z.Name == "Carlsberg Polska Sp. z o.o.").Id).Id,
+                        Alcohol = 6.0,
                     }
                 };
                 context.AddRange(beerList);
+                context.SaveChanges();
+            };
+
+            if (!context.BeerTypeBeer.Any()) {
+                var beerTypeBeerList = new List<BeerTypeBeer>() {
+                    new BeerTypeBeer { ProductId = context.Product.First(x=>x.Picture=="harnasJasnePelne.png").Id,
+                                        BeerTypeId = context.BeerType.First(x=>x.Name == "Pale Lager").Id
+                    },
+                    new BeerTypeBeer { ProductId = context.Product.First(x=>x.Picture=="harnasOkocimski.png").Id,
+                                        BeerTypeId = context.BeerType.First(x=>x.Name == "Pale Lager").Id
+                    },
+                    new BeerTypeBeer { ProductId = context.Product.First(x=>x.Picture=="harnasGrzaniec.png").Id,
+                                        BeerTypeId = context.BeerType.First(x=>x.Name == "Christmas/Winter Specialty Spiced Beer").Id
+                    },
+                };
+                context.AddRange(beerTypeBeerList);
                 context.SaveChanges();
             };
 

@@ -15,7 +15,7 @@ namespace Data.DBModels
         public int ProductId { get; set; }
         [JsonIgnore]
         public Product Product { get; set; }
-        public ICollection<BeerTypeBeer> BeerTypeBeers { get; set; }
+        
 
     }
 }

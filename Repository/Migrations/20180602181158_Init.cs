@@ -1,11 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using System;
-using System.Collections.Generic;
 
 namespace Repository.Migrations
 {
-    public partial class Initial : Migration
+    public partial class Init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -55,14 +54,14 @@ namespace Repository.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Active = table.Column<bool>(nullable: false),
-                    Avatar = table.Column<string>(nullable: true),
-                    Blocked = table.Column<bool>(nullable: false),
+                    Username = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
                     Password = table.Column<string>(nullable: true),
                     PasswordSalt = table.Column<string>(nullable: true),
-                    RoleId = table.Column<int>(nullable: false),
-                    Username = table.Column<string>(nullable: true)
+                    Avatar = table.Column<string>(nullable: true),
+                    Active = table.Column<bool>(nullable: false),
+                    Blocked = table.Column<bool>(nullable: false),
+                    RoleId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -81,11 +80,11 @@ namespace Repository.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AccountId = table.Column<int>(nullable: false),
                     AuthToken = table.Column<string>(nullable: true),
                     AuthTokenExpires = table.Column<DateTime>(nullable: false),
                     RefreshToken = table.Column<string>(nullable: true),
-                    RefreshTokenExpires = table.Column<DateTime>(nullable: false)
+                    RefreshTokenExpires = table.Column<DateTime>(nullable: false),
+                    AccountId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -104,8 +103,8 @@ namespace Repository.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AccountId = table.Column<int>(nullable: false),
-                    CodeVerification = table.Column<string>(nullable: true)
+                    CodeVerification = table.Column<string>(nullable: true),
+                    AccountId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -124,13 +123,14 @@ namespace Repository.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AccountId = table.Column<int>(nullable: false),
-                    CountryId = table.Column<int>(nullable: false),
-                    Date = table.Column<DateTime>(nullable: false),
-                    Description = table.Column<string>(nullable: true),
-                    IsBeer = table.Column<bool>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    Picture = table.Column<string>(nullable: true)
+                    Description = table.Column<string>(nullable: true),
+                    Picture = table.Column<string>(nullable: true),
+                    Approved = table.Column<bool>(nullable: false),
+                    Date = table.Column<DateTime>(nullable: false),
+                    IsBeer = table.Column<bool>(nullable: false),
+                    CountryId = table.Column<int>(nullable: false),
+                    AccountId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -150,17 +150,43 @@ namespace Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "BeerTypeBeer",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    ProductId = table.Column<int>(nullable: false),
+                    BeerTypeId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BeerTypeBeer", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_BeerTypeBeer_BeerType_BeerTypeId",
+                        column: x => x.BeerTypeId,
+                        principalTable: "BeerType",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_BeerTypeBeer_Product_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Product",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Brewery",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    NumberOfBuilding = table.Column<string>(nullable: true),
                     Place = table.Column<string>(nullable: true),
-                    PostOffice = table.Column<string>(nullable: true),
                     PostalCode = table.Column<string>(nullable: true),
-                    ProductId = table.Column<int>(nullable: false),
-                    Street = table.Column<string>(nullable: true)
+                    PostOffice = table.Column<string>(nullable: true),
+                    Street = table.Column<string>(nullable: true),
+                    NumberOfBuilding = table.Column<string>(nullable: true),
+                    ProductId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -179,9 +205,9 @@ namespace Repository.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AccountId = table.Column<int>(nullable: false),
-                    Content = table.Column<string>(nullable: true),
                     Date = table.Column<DateTime>(nullable: false),
+                    Content = table.Column<string>(nullable: true),
+                    AccountId = table.Column<int>(nullable: false),
                     ProductId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
@@ -207,9 +233,9 @@ namespace Repository.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AccountId = table.Column<int>(nullable: false),
+                    VoteValue = table.Column<int>(nullable: false),
                     ProductId = table.Column<int>(nullable: false),
-                    VoteValue = table.Column<int>(nullable: false)
+                    AccountId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -255,32 +281,6 @@ namespace Repository.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateTable(
-                name: "BeerTypeBeer",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    BeerId = table.Column<int>(nullable: false),
-                    BeerTypeId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BeerTypeBeer", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_BeerTypeBeer_Beer_BeerId",
-                        column: x => x.BeerId,
-                        principalTable: "Beer",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                    table.ForeignKey(
-                        name: "FK_BeerTypeBeer_BeerType_BeerTypeId",
-                        column: x => x.BeerTypeId,
-                        principalTable: "BeerType",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Account_RoleId",
                 table: "Account",
@@ -310,14 +310,14 @@ namespace Repository.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_BeerTypeBeer_BeerId",
-                table: "BeerTypeBeer",
-                column: "BeerId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_BeerTypeBeer_BeerTypeId",
                 table: "BeerTypeBeer",
                 column: "BeerTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BeerTypeBeer_ProductId",
+                table: "BeerTypeBeer",
+                column: "ProductId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Brewery_ProductId",
@@ -365,6 +365,9 @@ namespace Repository.Migrations
                 name: "AccountVerification");
 
             migrationBuilder.DropTable(
+                name: "Beer");
+
+            migrationBuilder.DropTable(
                 name: "BeerTypeBeer");
 
             migrationBuilder.DropTable(
@@ -374,13 +377,10 @@ namespace Repository.Migrations
                 name: "Vote");
 
             migrationBuilder.DropTable(
-                name: "Beer");
+                name: "Brewery");
 
             migrationBuilder.DropTable(
                 name: "BeerType");
-
-            migrationBuilder.DropTable(
-                name: "Brewery");
 
             migrationBuilder.DropTable(
                 name: "Product");

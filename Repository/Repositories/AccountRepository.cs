@@ -45,7 +45,7 @@ namespace Repository.Repositories
             throw new NotImplementedException();
         }
 
-        public IQueryable<Account> GetById(int id) {
+        public IQueryable<Account> GetBeerById(int id) {
             throw new NotImplementedException();
         }
 

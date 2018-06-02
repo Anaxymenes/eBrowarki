@@ -23,7 +23,7 @@ namespace Repository.Repositories {
             throw new NotImplementedException();
         }
 
-        IQueryable<Role> IRepository<Role>.GetById(int id) {
+        IQueryable<Role> IRepository<Role>.GetBeerById(int id) {
             throw new NotImplementedException();
         }
     }

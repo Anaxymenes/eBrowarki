@@ -7,7 +7,8 @@ using System.Text;
 namespace Service.Interfaces
 {
     public interface IProductService {
-        ProductDTO GetById(int id);
+        ProductDTO GetBeerById(int id);
+        ProductDTO GetBreweryById(int id);
         List<ProductDTO> GetAllProductByType(bool isBeer);
 
     }

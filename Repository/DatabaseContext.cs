@@ -131,10 +131,10 @@ namespace Repository
                 .Property(x => x.Id)
                 .ValueGeneratedOnAdd();
 
-            modelBuilder.Entity<Beer>()
+            modelBuilder.Entity<Product>()
                 .HasMany(x => x.BeerTypeBeers)
-                .WithOne(c => c.Beer)
-                .HasForeignKey(f => f.BeerId)
+                .WithOne(c => c.Product)
+                .HasForeignKey(f => f.ProductId)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<Brewery>()

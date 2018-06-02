@@ -18,18 +18,24 @@ namespace Service.Services
         }
 
         public List<ProductDTO> GetAllProductByType(bool isBeer) {
-            var resultsFromDB = _productRepository.GetAllByType(isBeer);
-            if (resultsFromDB == null)
-                return null;
-            List<ProductDTO> results = new List<ProductDTO>();
-            foreach (var obj in resultsFromDB)
-                results.Add(this.GetProductDTO(obj));
+            //var resultsFromDB = _productRepository.GetAllBeers(isBeer);
+            //if (resultsFromDB == null)
+            //    return null;
+            //List<ProductDTO> results = new List<ProductDTO>();
+            //foreach (var obj in resultsFromDB)
+            //    results.Add(this.GetProductDTO(obj));
 
-            return results;
+            //return results;
+
+            return null;
         }
 
-        public ProductDTO GetById(int id) {
-            return this.GetProductDTO(_productRepository.GetById(id).First());
+        public ProductDTO GetBeerById(int id) {
+            return this.GetProductDTO(_productRepository.GetBeerById(id).First());
+        }
+
+        public ProductDTO GetBreweryById(int id) {
+            throw new NotImplementedException();
         }
 
         protected ProductDTO GetProductDTO(Product result) {
@@ -65,24 +71,24 @@ namespace Service.Services
                     value += obj.VoteValue;
                 productDTO.Vote = (double)value / countOfVotes;
             }
-            if (result.IsBeer == true) {
-                BeerDTO beerDTO = new BeerDTO() {
-                    Alcohol = result.Beer.Alcohol,
+            //if (result.IsBeer == true) {
+             BeerDTO beerDTO = new BeerDTO() {
+                Alcohol = result.Beer.Alcohol,
                     //BeerType = result.Beer.BeerType.Name,
-                    Producer = result.Beer.Brewery.Product.Name,
-                    ProducerId = result.Beer.Brewery.Product.Id
-                };
-                productDTO.Beer = beerDTO;
-            } else {
-                BreweryDTO breweryDTO = new BreweryDTO() {
-                    NumberOfBuilding = result.Brewery.NumberOfBuilding,
-                    Place = result.Brewery.Place,
-                    PostalCode = result.Brewery.PostalCode,
-                    PostOffice = result.Brewery.PostOffice,
-                    Street = result.Brewery.Street
-                };
-                productDTO.Brewery = breweryDTO;
-            }
+                Producer = result.Beer.Brewery.Product.Name,
+                ProducerId = result.Beer.Brewery.Product.Id
+            };
+            productDTO.Beer = beerDTO;
+            //} else {
+            //    BreweryDTO breweryDTO = new BreweryDTO() {
+            //        NumberOfBuilding = result.Brewery.NumberOfBuilding,
+            //        Place = result.Brewery.Place,
+            //        PostalCode = result.Brewery.PostalCode,
+            //        PostOffice = result.Brewery.PostOffice,
+            //        Street = result.Brewery.Street
+            //    };
+            //    productDTO.Brewery = breweryDTO;
+            //}
             return productDTO;
         }
     }

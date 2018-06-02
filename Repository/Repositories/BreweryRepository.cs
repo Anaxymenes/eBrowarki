@@ -30,7 +30,7 @@ namespace Repository.Repositories
             throw new NotImplementedException();
         }
 
-        public IQueryable<Brewery> GetById(int id) {
+        public IQueryable<Brewery> GetBeerById(int id) {
             throw new NotImplementedException();
         }
     }

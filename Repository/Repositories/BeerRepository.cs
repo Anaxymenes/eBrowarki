@@ -29,7 +29,7 @@ namespace Repository.Repositories
             throw new NotImplementedException();
         }
 
-        public IQueryable<Beer> GetById(int id) {
+        public IQueryable<Beer> GetBeerById(int id) {
             throw new NotImplementedException();
         }
     }
