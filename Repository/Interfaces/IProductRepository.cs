@@ -8,9 +8,9 @@ namespace Repository.Interfaces
 {
     public interface IProductRepository : IRepository<Product> {
         IQueryable<Product> GetAllBreweries();
-        IQueryable<BeerTypeBeer> GetAllBeers();
-        IQueryable<BeerTypeBeer> GetBeerById();
+        IQueryable<Product> GetAllBeers();
+        IQueryable<Product> GetBeerById();
         IQueryable<Product> GetBreweryById();
-        IQueryable<BeerTypeBeer> GetAllBeersByBeerType(string beedType);
+        IQueryable<Product> GetAllBeersByBeerType(string beedType);
     }
 }
