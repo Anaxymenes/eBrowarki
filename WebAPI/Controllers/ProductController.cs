@@ -17,9 +17,9 @@ namespace WebAPI.Controllers
             _productService = productService;
         }
 
-        [HttpGet("get/{id}")]
-        public IActionResult GetById(int id) {
-            return Ok(_productService.GetById(id));
+        [HttpGet("getBeer/{id}")]
+        public IActionResult GetBeerById(int id) {
+            return Ok(_productService.GetBeerById(id));
         }
 
         [HttpGet("getAllBeers")]

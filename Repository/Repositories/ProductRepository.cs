@@ -27,14 +27,20 @@ namespace Repository.Repositories
         }
 
         public IQueryable<Product> GetAll() {
+            return _context.Product.Where(x=>x.Approved == true)
+                .Include(beer => beer.Beer)
+                .ThenInclude(x => x.Brewery)
+                .Include(x => x.Country)
+                .Include(x => x.Comments)
+                .ThenInclude(x => x.Account)
+                .Include(x => x.Votes);
+        }
+
+        public IQueryable<Product> GetAllBeers() {
             throw new NotImplementedException();
         }
 
-        public IQueryable<BeerTypeBeer> GetAllBeers() {
-            throw new NotImplementedException();
-        }
-
-        public IQueryable<BeerTypeBeer> GetAllBeersByBeerType(string beedType) {
+        public IQueryable<Product> GetAllBeersByBeerType(string beedType) {
             throw new NotImplementedException();
         }
 
@@ -42,34 +48,11 @@ namespace Repository.Repositories
             throw new NotImplementedException();
         }
 
-        public IQueryable<Product> GetBeerById(int id) {
-            //if (!_context.Product.Any(x => x.Id == id))
-            //    return null;
-            //if (_context.Product.First(x => x.Id == id).IsBeer == true)
-            //    return _context.Product
-            //        .Include(comment => comment.Comments)
-            //        .ThenInclude(author => author.Account)
-            //        .Include(country => country.Country)
-            //        .Include(account => account.Account)
-            //        .Include(votes => votes.Votes)
-            //        .Where(x => x.Id == id)
-            //        .Include(beer => beer.Beer)
-            //            .ThenInclude(brewery => brewery.Brewery)
-            //            .ThenInclude(product => product.Product)
-            //        .Include(beer => beer.Beer)
-            //            .ThenInclude(beerType => beerType.BeerTypeBeers);
-            //return _context.Product
-            //        .Include(comment => comment.Comments)
-            //        .ThenInclude(author => author.Account)
-            //        .Include(country => country.Country)
-            //        .Include(account => account.Account)
-            //        .Include(votes => votes.Votes)
-            //        .Where(x => x.Id == id)
-            //        .Include(brewery => brewery.Brewery);
-            return null;
+        public IQueryable<Product> GetBeerById() {
+            throw new NotImplementedException();
         }
 
-        public IQueryable<BeerTypeBeer> GetBeerById() {
+        public IQueryable<Product> GetBeerById(int id) {
             throw new NotImplementedException();
         }
 
