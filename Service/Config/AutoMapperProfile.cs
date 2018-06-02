@@ -159,11 +159,17 @@ namespace Service.Config
                 opt => opt.Ignore())
                 .AfterMap((src, dest) =>
                 {
-                    if(src.Comments != null)
+                    if(src.Comments != null && src.Comments.Count > 0)
                     {
                         List<CommentDTO> result = new List<CommentDTO>();
                         foreach (var obj in src.Comments) {
-                            var com = _mapper.Map<CommentDTO>(obj);
+                            CommentDTO com = new CommentDTO() {
+                                Id = obj.Id,
+                                AccountId = obj.AccountId,
+                                Author = obj.Account.Username,
+                                Content = obj.Content,
+                                Date = obj.Date
+                            };
                             result.Add(com);
                         }
                         dest.Comments = result;
