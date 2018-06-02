@@ -142,7 +142,7 @@ namespace Service.Config
                 .ForMember(dest => dest.Vote,
                 opt => opt.Ignore())
                 .AfterMap((src, dest) => {
-                    if (src.Votes != null) {
+                    if (src.Votes != null && src.Votes.Count > 0) {
                         double voteResult = 0;
                         foreach (var obj in src.Votes)
                             voteResult += obj.VoteValue;
