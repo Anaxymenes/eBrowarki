@@ -1,0 +1,7 @@
+
+*.pdb
+*.ide
+*.ide
+*.ide-shm
+*.ide-wal
+Data/bin/Debug/netcoreapp2.0/Data.dll

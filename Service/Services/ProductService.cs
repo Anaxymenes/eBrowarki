@@ -1,4 +1,5 @@
-﻿using Data.DBModels;
+﻿using AutoMapper;
+using Data.DBModels;
 using Data.DTO;
 using Repository.Interfaces;
 using Service.Interfaces;
@@ -12,9 +13,12 @@ namespace Service.Services
     public class ProductService : IProductService {
 
         private readonly IProductRepository _productRepository;
+        private readonly IMapper _mapper;
 
-        public ProductService(IProductRepository productRepository) {
+        public ProductService(IProductRepository productRepository,
+            IMapper mapper) {
             _productRepository = productRepository;
+            _mapper = mapper;
         }
 
         public List<ProductDTO> GetAllProductByType(bool isBeer) {
@@ -26,8 +30,18 @@ namespace Service.Services
             //    results.Add(this.GetProductDTO(obj));
 
             //return results;
-
-            return null;
+            List<ProductDTO> results = new List<ProductDTO>();
+            if (isBeer) {
+                var temp = _productRepository.GetAllBeers();
+                foreach (var obj in temp)
+                    results.Add(_mapper.Map<ProductDTO>(obj));
+                
+            } else {
+                var res = _productRepository.GetAllBreweries();
+                foreach (var obj in res)
+                    results.Add(_mapper.Map<ProductDTO>(obj));
+            }
+            return results;
         }
 
         public ProductDTO GetBeerById(int id) {

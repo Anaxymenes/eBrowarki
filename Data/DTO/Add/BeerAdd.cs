@@ -9,7 +9,8 @@ namespace Data.DTO.Add
     {
         public double Alcohol { get; set; }
         //public int BeerTypeId { get; set; }
-        public List<BeerTypeBeer> BeerTypeBeerList { get; set; }
+        //public List<BeerTypeBeerDTO> BeerTypeBeerList { get; set; }
+        public List<BeerTypeBeerDTO> BeerTypeBeerList { get; set; }
         public int ProducerId { get; set; }
     }
 }

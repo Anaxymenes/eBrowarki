@@ -331,7 +331,7 @@ namespace Repository
                         Picture="carlsbergSpZoo.png",
                         Name="Carlsberg Polska Sp. z o.o.",
                         Description = "Carlsberg Polska Sp. z o.o. – polskie przedsiębiorstwo z branży piwowarskiej należące do duńskiego koncernu Carlsberg Group. Do Carlsberg Polska należy 15,3% udziałów w rynku piwa w Polsce.",
-                        
+                        Approved = true
                     },
                     new Product {
                         AccountId = context.Account.First(x=>x.Username == "admin").Id,

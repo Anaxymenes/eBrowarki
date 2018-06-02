@@ -27,25 +27,31 @@ namespace Repository.Repositories
         }
 
         public IQueryable<Product> GetAll() {
-            return _context.Product.Where(x=>x.Approved == true)
-                .Include(beer => beer.Beer)
-                .ThenInclude(x => x.Brewery)
-                .Include(x => x.Country)
-                .Include(x => x.Comments)
-                .ThenInclude(x => x.Account)
-                .Include(x => x.Votes);
-        }
-
-        public IQueryable<Product> GetAllBeers() {
             throw new NotImplementedException();
         }
 
-        public IQueryable<Product> GetAllBeersByBeerType(string beedType) {
+        public IQueryable<Product> GetAllBeers() {
+            return _context.Product.Where(x => x.Approved == true && x.IsBeer == true)
+                .Include(beer => beer.Beer)
+                    .ThenInclude(x => x.Brewery)
+                        .ThenInclude(x=>x.Product)
+                .Include(x => x.Country)
+                .Include(x => x.Comments)
+                    .ThenInclude(x => x.Account)
+                .Include(x => x.Votes);
+        }
+
+        public IQueryable<Product> GetAllBeersByBeerType(string beerType) {
             throw new NotImplementedException();
         }
 
         public IQueryable<Product> GetAllBreweries() {
-            throw new NotImplementedException();
+            return _context.Product.Where(x => x.Approved == true && x.IsBeer == false)
+                        .Include(x => x.Brewery)
+                        .Include(x => x.Country)
+                        .Include(x => x.Comments)
+                            .ThenInclude(x => x.Account)
+                        .Include(x => x.Votes);
         }
 
         public IQueryable<Product> GetBeerById() {
