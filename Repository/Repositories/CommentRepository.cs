@@ -25,10 +25,33 @@ namespace Repository.Repositories
             }
         }
 
-        public bool Delete(Comment entity) {
-            //var user = _context.Account.Where(x => x.Id == entity.AccountId);
-            //var entity = 
+        public bool Delete(int id, int userId) {
+            var user = _context.Account.First(x => x.Id == userId);
+            var obj = _context.Comment.First(x => x.Id == id);
+            if(user.Role.Name == "Admin" || user.Role.Name== "Moderator" || obj.AccountId == userId) {
+                try {
+                    _context.Remove(obj);
+                    _context.SaveChanges();
+                    return true;
+                }catch(Exception e) {
+                    return false;
+                }
+            }
             return false;
+        }
+
+        public Comment Edit(Comment entity, int userId) {
+            var user = _context.Account.First(x => x.Id == userId);
+            if (user.Role.Name == "Admin" || user.Role.Name == "Moderator" || entity.AccountId == userId) {
+                try {
+                    _context.Add(entity);
+                    _context.SaveChanges();
+                    return entity;
+                } catch (Exception e) {
+                    return null;
+                }
+            };
+            return null;
         }
 
         public IQueryable<Comment> GetAll() {

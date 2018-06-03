@@ -35,12 +35,13 @@ namespace WebAPI.Controllers
             var result = _commentService.Edit(commentEdit, ClaimsMethods.GetClaimsList(HttpContext.User.Claims));
             if (result != null)
                 return Ok(result);
-            return BadRequest();
+            return BadRequest("Błąd podczas edytowania danych. Spróbuj później. " +
+                "Jeśli błąd będzie się powtarzał skontaktuj się z administratorem");
         }
 
         [HttpDelete]
-        public IActionResult DeleteComment([FromBody]CommentEdit comment) {
-            if (_commentService.Delete(comment, ClaimsMethods.GetClaimsList(HttpContext.User.Claims)) != true)
+        public IActionResult DeleteComment([FromBody]int commentId) {
+            if (_commentService.Delete(commentId, ClaimsMethods.GetClaimsList(HttpContext.User.Claims)) != true)
                 return Ok();
             return BadRequest();
         }

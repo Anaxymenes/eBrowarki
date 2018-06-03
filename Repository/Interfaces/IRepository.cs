@@ -8,8 +8,9 @@ namespace Repository.Interfaces
 {
     public interface IRepository<T> where T:Entity {
 
-        bool Delete(T entity);
+        bool Delete(int id, int userId);
         IQueryable<T> GetAll();
         T Add(T entity);
+        T Edit(T entity, int userId);
     }
 }

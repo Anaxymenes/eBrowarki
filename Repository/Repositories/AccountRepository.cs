@@ -37,7 +37,11 @@ namespace Repository.Repositories
             throw new NotImplementedException();
         }
 
-        public bool Delete(Account entity) {
+        public bool Delete(int id, int userId) {
+            throw new NotImplementedException();
+        }
+
+        public Account Edit(Account entity, int userId) {
             throw new NotImplementedException();
         }
 
@@ -50,9 +54,6 @@ namespace Repository.Repositories
             throw new NotImplementedException();
         }
 
-        public IQueryable<Account> GetBeerById(int id) {
-            throw new NotImplementedException();
-        }
 
         public Account GetUserByUsernameOrEmail(string value) {
             try {

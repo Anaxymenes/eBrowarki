@@ -26,7 +26,11 @@ namespace Repository.Repositories
             }
         }
 
-        public bool Delete(Product entity) {
+        public bool Delete(int id, int userId) {
+            throw new NotImplementedException();
+        }
+
+        public Product Edit(Product entity, int userId) {
             throw new NotImplementedException();
         }
 

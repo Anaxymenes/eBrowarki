@@ -15,7 +15,11 @@ namespace Repository.Repositories {
             throw new NotImplementedException();
         }
 
-        public bool Delete(Role entity) {
+        public bool Delete(int id, int userId) {
+            throw new NotImplementedException();
+        }
+
+        public Role Edit(Role entity, int userId) {
             throw new NotImplementedException();
         }
 

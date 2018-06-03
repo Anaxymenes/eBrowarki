@@ -19,23 +19,15 @@ namespace Repository.Repositories
             throw new NotImplementedException();
         }
 
-        public void Delete(int id) {
+        public bool Delete(int id, int userId) {
             throw new NotImplementedException();
         }
 
-        public bool Delete(AccountVerification entity) {
-            throw new NotImplementedException();
-        }
-
-        public AccountVerification Edit(AccountVerification entity) {
+        public AccountVerification Edit(AccountVerification entity, int userId) {
             throw new NotImplementedException();
         }
 
         public IQueryable<AccountVerification> GetAll() {
-            throw new NotImplementedException();
-        }
-
-        public IQueryable<AccountVerification> GetBeerById(int id) {
             throw new NotImplementedException();
         }
 

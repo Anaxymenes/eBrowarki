@@ -11,5 +11,6 @@ namespace Repository.Interfaces
         bool ExistEmail(string email);
         void RegisterUser(Account account,AccountVerification accountVerification);
         bool ActiveAccount(ActivatedAccount activatedAccount);
+
     }
 }

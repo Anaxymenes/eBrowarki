@@ -12,6 +12,6 @@ namespace Service.Interfaces
 
         CommentDTO Add(CommentAdd commentAdd, List<ClaimDTO> claims);
         CommentDTO Edit(CommentEdit commentEdit, List<ClaimDTO> claims);
-        bool Delete(CommentEdit comment, List<ClaimDTO> claims);
+        bool Delete(int id, List<ClaimDTO> claims);
     }
 }

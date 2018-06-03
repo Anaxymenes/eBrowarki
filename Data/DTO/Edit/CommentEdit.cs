@@ -9,6 +9,7 @@ namespace Data.DTO.Edit
         public DateTime Date { get; set; }
         public int AccountId { get; set; }
         public int ProductId { get; set; }
+        public string Content { get; set; }
 
     }
 }

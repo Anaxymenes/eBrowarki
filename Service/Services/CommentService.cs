@@ -32,14 +32,16 @@ namespace Service.Services
             return null;
         }
 
-        public bool Delete(CommentEdit comment, List<ClaimDTO> claims) {
-            Comment commentToDelete = _mapper.Map<Comment>(comment);
-            commentToDelete.AccountId = Convert.ToInt32(claims.Find(x => x.Type == "nameidentifier").Value);
-            return _commentRepository.Delete(commentToDelete);
+        public bool Delete(int id, List<ClaimDTO> claims) {
+            return _commentRepository.Delete(id, Convert.ToInt32(claims.Find(x => x.Type == "nameidentifier").Value));
         }
 
         public CommentDTO Edit(CommentEdit commentEdit, List<ClaimDTO> claims) {
-            throw new NotImplementedException();
+            var results = _commentRepository.Edit(_mapper.Map<Comment>(commentEdit), 
+                Convert.ToInt32(claims.Find(x => x.Type == "nameidentifier").Value));
+            if (results != null)
+                return _mapper.Map<CommentDTO>(results);
+            return null;
         }
     }
 }

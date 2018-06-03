@@ -25,15 +25,15 @@ namespace Repository.Repositories
             }
         }
 
-        public bool Delete(Beer entity) {
+        public bool Delete(int id, int userId) {
+            throw new NotImplementedException();
+        }
+
+        public Beer Edit(Beer entity, int userId) {
             throw new NotImplementedException();
         }
 
         public IQueryable<Beer> GetAll() {
-            throw new NotImplementedException();
-        }
-
-        public IQueryable<Beer> GetBeerById(int id) {
             throw new NotImplementedException();
         }
     }
