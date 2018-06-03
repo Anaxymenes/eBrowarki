@@ -93,7 +93,9 @@ namespace Service.Services
                 Active = false,
                 RoleId = 3,
                 Password = AuthMethods.GetHashedPassword(registerAccountDTO.Password, salt),
-                PasswordSalt = AuthMethods.EncodeByteToString(salt)
+                PasswordSalt = AuthMethods.EncodeByteToString(salt),
+                Blocked = false,
+                Avatar = "nonProfile.png"
             };
             AccountVerification accountVerification = new AccountVerification() {
                 CodeVerification = AuthMethods.EncodeByteToString(AuthMethods.GetCodeVerification())
