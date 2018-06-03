@@ -1,4 +1,5 @@
-﻿using Data.DBModels;
+﻿using AutoMapper;
+using Data.DBModels;
 using Data.DTO;
 using Microsoft.AspNetCore.Cryptography.KeyDerivation;
 using Microsoft.Extensions.Configuration;
@@ -21,15 +22,18 @@ namespace Service.Services
         private IConfiguration Configuration;
         private readonly IAccountRepository _accountRepository;
         private readonly IAccountVerificationService _accountVerificationService;
+        private readonly IMapper _mapper;
 
         public AuthService(
             IConfiguration config,
             IAccountRepository accountRepository,
-            IAccountVerificationService accountVerificationService
+            IAccountVerificationService accountVerificationService,
+            IMapper mapper
             ) {
             Configuration = config;
             _accountRepository = accountRepository;
             _accountVerificationService = accountVerificationService;
+            _mapper = mapper;
         }
 
         public JWTBearerToken GetToken(AccountLoginVerificationDTO user) {
@@ -86,17 +90,7 @@ namespace Service.Services
         }
 
         public bool RegisterUser(RegisterAccountDTO registerAccountDTO) {
-            byte[] salt = AuthMethods.GetSalt();
-            Account account = new Account() {
-                Email = registerAccountDTO.Email,
-                Username = registerAccountDTO.Email.Substring(0,registerAccountDTO.Email.IndexOf('@')),
-                Active = false,
-                RoleId = 3,
-                Password = AuthMethods.GetHashedPassword(registerAccountDTO.Password, salt),
-                PasswordSalt = AuthMethods.EncodeByteToString(salt),
-                Blocked = false,
-                Avatar = "nonProfile.png"
-            };
+            Account account = _mapper.Map<Account>(registerAccountDTO);
             AccountVerification accountVerification = new AccountVerification() {
                 CodeVerification = AuthMethods.EncodeByteToString(AuthMethods.GetCodeVerification())
             };

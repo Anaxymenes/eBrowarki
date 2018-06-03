@@ -22,18 +22,12 @@ namespace WebAPI.Controllers
 
         [HttpPost("login")]
         public IActionResult LoginAndGetToken([FromBody] LoginDTO loginDTO) {
-            IActionResult response = Unauthorized();
             if (loginDTO == null)
                 return BadRequest("Błąd przesyłu danych");
             var user = _authService.GetUserByUserNameOrEmail(loginDTO);
-            if (user == null)
-                return NotFound("Błędny dane logowania, lub użytkownik nie istnieje");
-            if (user.Active == false)
-                return BadRequest("Konto nie aktywne!");
-            if (!_authService.IsValid(user, loginDTO))
-                return BadRequest("Błędny dane logowania, lub użytkownik nie istnieje");
-            response = Ok(_authService.GetToken(user));
-            return response;
+            if (user == null || !_authService.IsValid(user, loginDTO) || user.Active == false)
+                return NotFound("Błędny dane logowania, konto nie aktywne lub użytkownik nie istnieje");
+            return Ok(_authService.GetToken(user));
         }
 
         [Authorize]
@@ -49,14 +43,13 @@ namespace WebAPI.Controllers
 
         [HttpPost("register")]
         public IActionResult RegisterNewAccount([FromBody]RegisterAccountDTO registerAccountDTO) {
-            if (registerAccountDTO == null)
-                return BadRequest("Błąd przesyłu danych");
-            if (_authService.ExistUser(registerAccountDTO))
-                return BadRequest("Zarejestrowano konto na adres email : " + registerAccountDTO.Email);
-            if (!registerAccountDTO.IsValid())
-                return BadRequest("Błąd przesyłu danych");
+            if (registerAccountDTO == null ||
+                _authService.ExistUser(registerAccountDTO) ||
+                !registerAccountDTO.IsValid()
+                )
+                return BadRequest("Błąd rejestracji.");
             if (_authService.RegisterUser(registerAccountDTO) == false)
-                return BadRequest("Nie mogę dodać użytkownika do bazy. Spróbuj ponownie później.");
+                return BadRequest("Błąd podczas rejestracji użytkownika. Spróbuj ponownie później.");
             return Ok();
 
         }
