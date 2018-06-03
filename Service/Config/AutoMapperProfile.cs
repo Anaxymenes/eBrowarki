@@ -109,6 +109,10 @@ namespace Service.Config
                 opt => opt.MapFrom(src => AuthMethods.GetHashedPassword(src.Password, salt)))
                 .ForMember(dest => dest.PasswordSalt,
                 opt => opt.MapFrom(src => AuthMethods.EncodeByteToString(salt)))
+                .ForMember(dest => dest.Blocked,
+                opt => opt.UseValue(false))
+                .ForMember(dest => dest.Avatar,
+                opt => opt.UseValue("nonProfile.png"))
                 ;
 
             CreateMap<Beer, BeerDTO>()
