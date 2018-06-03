@@ -25,6 +25,27 @@ namespace Repository.Repositories
             }
         }
 
+        public bool Add(Product product, Beer beer, List<BeerTypeBeer> beerTypeBeerList) {
+            var result = false;
+            using( var transaction = _context.Database.BeginTransaction()) {
+                try {
+                    _context.Product.Add(product);
+                    _context.SaveChanges();
+                    var productId = _context.Product.Last().Id;
+                    beer.ProductId = productId;
+                    _context.Beer.Add(beer);
+                    _context.SaveChanges();
+                    beerTypeBeerList.ForEach(x => x.ProductId = productId);
+                    _context.BeerTypeBeer.AddRange(beerTypeBeerList);
+                    _context.SaveChanges();
+                    result = true;
+                }catch(Exception e) {
+                    transaction.Rollback();
+                }
+            }
+            return result;
+        }
+
         public bool Delete(int id, int userId) {
             throw new NotImplementedException();
         }

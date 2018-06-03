@@ -23,11 +23,9 @@ namespace WebAPI.Controllers
         [Authorize]
         [HttpPost("addBeer")]
         public IActionResult AddBeer([FromBody] BeerAdd beerAdd) {
-            //var a = ClaimsMethods.GetClaimsList(User.Claims);
             if (_beerService.Add(beerAdd, ClaimsMethods.GetClaimsList(User.Claims)))
                 return Ok();
             return BadRequest();
-            //return Ok(claims);
         }
 
 
