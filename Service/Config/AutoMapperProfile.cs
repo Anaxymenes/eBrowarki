@@ -2,6 +2,7 @@
 using Data.DBModels;
 using Data.DTO;
 using Data.DTO.Add;
+using Data.DTO.Edit;
 using Service.utils;
 using System;
 using System.Collections.Generic;
@@ -95,8 +96,10 @@ namespace Service.Config
                 opt => opt.MapFrom(src => src.PasswordSalt))
                 ;
 
-            byte[] salt = AuthMethods.GetSalt();
+
+            byte[] salt = null;
             CreateMap<RegisterAccountDTO, Account>()
+                .BeforeMap((src, dest) => salt = AuthMethods.GetSalt())
                 .ForMember(dest => dest.Email,
                 opt => opt.MapFrom(src => src.Email))
                 .ForMember(dest => dest.Username,
@@ -148,6 +151,24 @@ namespace Service.Config
                 opt => opt.MapFrom(src => src.Account.Username))
                 .ForMember(dest => dest.AccountId,
                 opt => opt.MapFrom(src => src.AccountId))
+                ;
+
+            CreateMap<CommentAdd, Comment>()
+                .ForMember(dest => dest.ProductId,
+                opt => opt.MapFrom(src => src.ProductId))
+                .ForMember(dest => dest.Content,
+                opt => opt.MapFrom(src => src.Content))
+                ;
+
+            CreateMap<CommentEdit, Comment>()
+                .ForMember(dest => dest.Id,
+                opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.Date,
+                opt => opt.UseValue(DateTime.Now))
+                .ForMember(dest => dest.AccountId,
+                opt => opt.MapFrom(src => src.AccountId))
+                .ForMember(dest => dest.ProductId,
+                opt => opt.MapFrom(src => src.ProductId))
                 ;
 
             CreateMap<Product, ProductDTO>()
