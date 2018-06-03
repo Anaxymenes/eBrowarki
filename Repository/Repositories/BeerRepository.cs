@@ -42,6 +42,7 @@ namespace Repository.Repositories
                     //_context.BeerTypeBeer.AddRange(beerTypeBeerList);
                     _context.BeerTypeBeer.AddRange(list);
                     _context.SaveChanges();
+                    transaction.Commit();
                     result = true;
                 }catch(Exception e) {
                     transaction.Rollback();
