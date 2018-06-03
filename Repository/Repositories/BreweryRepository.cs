@@ -26,6 +26,10 @@ namespace Repository.Repositories
 
         }
 
+        public bool Delete(Brewery entity) {
+            throw new NotImplementedException();
+        }
+
         public IQueryable<Brewery> GetAll() {
             throw new NotImplementedException();
         }

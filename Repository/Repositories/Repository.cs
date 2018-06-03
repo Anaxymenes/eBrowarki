@@ -12,6 +12,10 @@ namespace Repository.Repositories
             throw new NotImplementedException();
         }
 
+        public bool Delete(T entity) {
+            throw new NotImplementedException();
+        }
+
         public IQueryable<T> GetAll() {
             throw new NotImplementedException();
         }

@@ -26,6 +26,10 @@ namespace Repository.Repositories
             }
         }
 
+        public bool Delete(Product entity) {
+            throw new NotImplementedException();
+        }
+
         public IQueryable<Product> GetAll() {
             throw new NotImplementedException();
         }

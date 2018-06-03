@@ -15,6 +15,10 @@ namespace Repository.Repositories {
             throw new NotImplementedException();
         }
 
+        public bool Delete(Role entity) {
+            throw new NotImplementedException();
+        }
+
         public IQueryable<Role> GetAll() {
             return _context.Role.AsQueryable();
         }

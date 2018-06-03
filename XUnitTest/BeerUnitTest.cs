@@ -27,7 +27,7 @@ namespace XUnitTest
             };
             var productRepository = new Mock<IProductRepository>();
             var beerRepository = new Mock<IBeerRepository>();
-            beerRepository.Setup(b => b.GetById(1)).Returns(beer.AsQueryable());
+            //beerRepository.Setup(b => b.GetBeerById(1)).Returns(beer.AsQueryable());
             var beerService = new BeerService(beerRepository.Object, productRepository.Object);
             var beerController = new BeerController(beerService);
         }

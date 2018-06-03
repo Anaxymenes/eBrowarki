@@ -22,15 +22,15 @@ namespace Repository
 
             if (!context.Account.Any()) {
                 var accountList = new List<Account>() { 
-                    new Account { Username="admin", RoleId = context.Role.First(x=>x.Name.Equals("Admin")).Id,  // Hasło : @dmIn
+                    new Account { Username="Admin", RoleId = context.Role.First(x=>x.Name.Equals("Admin")).Id,  // Hasło : @dmIn
                                   Email="admin@admin.admin", Active = true, Avatar = "admin.png",
                                   Password = "huJvnFB7W+s+R1VKD5+mVk3Kxl4VLQ9FoKbdwWVj3dM=",
                                   PasswordSalt= "Oa4hhLqKNfKrM5lmBlNp5o2RBMAcb/oZY2JrSliHGPg=" },
-                    new Account { Username="moderator", RoleId = context.Role.First(x=>x.Name.Equals("Moderator")).Id,  // Hasło : @dmIn
+                    new Account { Username="Moderator", RoleId = context.Role.First(x=>x.Name.Equals("Moderator")).Id,  // Hasło : @dmIn
                                   Email="moderator@admin.admin", Active = true, Avatar = "moderator.png",
                                   Password = "huJvnFB7W+s+R1VKD5+mVk3Kxl4VLQ9FoKbdwWVj3dM=",
                                   PasswordSalt= "Oa4hhLqKNfKrM5lmBlNp5o2RBMAcb/oZY2JrSliHGPg=" },
-                    new Account { Username="user", RoleId = context.Role.First(x=>x.Name.Equals("User")).Id, // Hasło : T3st3r
+                    new Account { Username="User", RoleId = context.Role.First(x=>x.Name.Equals("User")).Id, // Hasło : T3st3r
                                   Email="user@admin.admin", Active = true, Avatar = "user.png",
                                   Password = "T3meNC23KoJwxxJFOsOx2fwj3vnh73dYk9tG9k3UIWg=",
                                   PasswordSalt= "/VAB3o32Ct62xq8cxaLC9gHj+FfvZmGmTlneXAVJOq0=" }, 
@@ -441,7 +441,7 @@ namespace Repository
 
                     //Beers
                     new Product {
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         Date = DateTime.Now,
                         CountryId = context.Country.First(x=>x.Name=="Poland").Id,
                         IsBeer=true,
@@ -451,7 +451,7 @@ namespace Repository
                         Approved = true
                     },
                     new Product {
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         Date = DateTime.Now,
                         CountryId = context.Country.First(x=>x.Name=="Poland").Id,
                         IsBeer=true,
@@ -461,7 +461,7 @@ namespace Repository
                         Approved = true
                     },
                     new Product {
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         Date = DateTime.Now,
                         CountryId = context.Country.First(x=>x.Name=="Poland").Id,
                         IsBeer=true,
@@ -471,7 +471,7 @@ namespace Repository
                         Approved = false
                     },
                     new Product {
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         Date = DateTime.Now,
                         CountryId = context.Country.First(x=>x.Name=="Poland").Id,
                         IsBeer=true,
@@ -481,7 +481,7 @@ namespace Repository
                         Approved = false
                     },
                     new Product {
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         Date = DateTime.Now,
                         CountryId = context.Country.First(x=>x.Name=="Poland").Id,
                         IsBeer=true,
@@ -491,7 +491,7 @@ namespace Repository
                         Approved = true
                     },
                     new Product {
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         Date = DateTime.Now,
                         CountryId = context.Country.First(x=>x.Name=="Poland").Id,
                         IsBeer=true,
@@ -501,7 +501,7 @@ namespace Repository
                         Approved = true
                     },
                     new Product {
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         Date = DateTime.Now,
                         CountryId = context.Country.First(x=>x.Name=="Poland").Id,
                         IsBeer=true,
@@ -511,7 +511,7 @@ namespace Repository
                         Approved = true
                     },
                     new Product {
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         Date = DateTime.Now,
                         CountryId = context.Country.First(x=>x.Name=="Poland").Id,
                         IsBeer=true,
@@ -521,7 +521,7 @@ namespace Repository
                         Approved = true
                     },
                     new Product {
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         Date = DateTime.Now,
                         CountryId = context.Country.First(x=>x.Name=="Poland").Id,
                         IsBeer=true,
@@ -531,7 +531,7 @@ namespace Repository
                         Approved = true
                     },
                     new Product {
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         Date = DateTime.Now,
                         CountryId = context.Country.First(x=>x.Name=="Poland").Id,
                         IsBeer=true,
@@ -541,7 +541,7 @@ namespace Repository
                         Approved = true
                     },
                     new Product {
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         Date = DateTime.Now,
                         CountryId = context.Country.First(x=>x.Name=="Poland").Id,
                         IsBeer=true,
@@ -551,7 +551,7 @@ namespace Repository
                         Approved = true
                     },
                     new Product {
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         Date = DateTime.Now,
                         CountryId = context.Country.First(x=>x.Name=="Poland").Id,
                         IsBeer=true,
@@ -561,7 +561,7 @@ namespace Repository
                         Approved = true
                     },
                     new Product {
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         Date = DateTime.Now,
                         CountryId = context.Country.First(x=>x.Name=="Poland").Id,
                         IsBeer=true,
@@ -571,7 +571,7 @@ namespace Repository
                         Approved = true
                     },
                     new Product {
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         Date = DateTime.Now,
                         CountryId = context.Country.First(x=>x.Name=="Poland").Id,
                         IsBeer=true,
@@ -581,7 +581,7 @@ namespace Repository
                         Approved = true
                     },
                     new Product {
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         Date = DateTime.Now,
                         CountryId = context.Country.First(x=>x.Name=="Poland").Id,
                         IsBeer=true,
@@ -591,7 +591,7 @@ namespace Repository
                         Approved = true
                     },
                     new Product {
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         Date = DateTime.Now,
                         CountryId = context.Country.First(x=>x.Name=="Poland").Id,
                         IsBeer=true,
@@ -601,7 +601,7 @@ namespace Repository
                         Approved = true
                     },
                     new Product {
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         Date = DateTime.Now,
                         CountryId = context.Country.First(x=>x.Name=="Poland").Id,
                         IsBeer=true,
@@ -611,7 +611,7 @@ namespace Repository
                         Approved = true
                     },
                     new Product {
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         Date = DateTime.Now,
                         CountryId = context.Country.First(x=>x.Name=="Poland").Id,
                         IsBeer=true,
@@ -621,7 +621,7 @@ namespace Repository
                         Approved = true
                     },
                     new Product {
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         Date = DateTime.Now,
                         CountryId = context.Country.First(x=>x.Name=="Poland").Id,
                         IsBeer=true,
@@ -631,7 +631,7 @@ namespace Repository
                         Approved = true
                     },
                     new Product {
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         Date = DateTime.Now,
                         CountryId = context.Country.First(x=>x.Name=="Poland").Id,
                         IsBeer=true,
@@ -641,7 +641,7 @@ namespace Repository
                         Approved = true
                     },
                     new Product {
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         Date = DateTime.Now,
                         CountryId = context.Country.First(x=>x.Name=="Poland").Id,
                         IsBeer=true,
@@ -883,163 +883,163 @@ namespace Repository
             if (!context.Comment.Any()) {
                 var comment = new List<Comment>(){
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "Moje ulubione piwo. Pije codziennie.",
                         ProductId = context.Product.First(x=>x.Picture=="harnasJasnePelne.png").Id,
                     },
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "Okropne.",
                         ProductId = context.Product.First(x=>x.Picture=="harnasOkocimski.png").Id,
                     },
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "Kiedyś piłem perle, nic mi w życiu nie wychodziło, nie zdałem prawka, dziewczyna mnie zdradziła. Zrezygnowany życiem poszedłem jak to mialem w zwyczaju do żabki i wtedy zobaczyłem ten cud piwowarstwa w postaci 3 sztuk za 5 złoty. Zakochałem się od razu w jego niepowtarzalnym smaku pieszczącym migdałki oraz aromatowi pobudzającym zmysły. Najlepsze piwko, zmieniło moje życie, polecam wsystkim mocno.",
                         ProductId = context.Product.First(x=>x.Picture=="harnasGrzaniec.png").Id,
                     },
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "Przyjemne zaskoczenie. Gęsta piana, która długo nie znika, przypomina lody. Smak rewelacyjny, aż za dobry, przypomina gęstą, gorzką kawę, espresso. Po chwili gorycz zanika, pojawia się słodki posmak (karmel?). W porównaniu z innymi porterami znanych marek, ten jest wyjątkowo udany. Trudno się do czegoś przyczepić. Np. porter Żywca jest męczący przy drugiej butelce, a ten nie. Chociaż ma sporo alkoholu to nie czuć go w smaku, tylko w głowie :)",
                         ProductId = context.Product.First(x=>x.Picture=="okocim.png").Id,
                     },
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "Całkiem dobry koncerniak. Śmiało może rywalizować z Perłą Chmielową, Lezajskiem albo Bosmanem. Tylko napis \"piwo regionalne\" jest już chyba trochę przesadzone odkąd warzy je Carlsberg.",
                         ProductId = context.Product.First(x=>x.Picture=="kasztelanJasnePelne.png").Id,
                     },
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "Według mnie Kasztelan Jasne Pełne i Bosman Full to dokładnie to samo piwo. Obydwa mają po 5.7%, smakują tak samo, są produkowane w tym samym miejscu i mają identyczne promocyjne zawleczki od puszek. Piwo jest dobre, ale według mnie to oszustwo sprzedawać to samo piwo jako dwie różne marki.",
                         ProductId = context.Product.First(x=>x.Picture=="kasztelanJasnePelne.png").Id,
                     },
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "Nie da się tego pić. Sam spiryt.",
                         ProductId = context.Product.First(x=>x.Picture=="kasztelanNiepasteryzowane.png").Id,
                     },
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "Reklamowy chwyt ostatnich lat, piwo niepasteryzowane, i co z tego skoro jest mikrofiltrowane. Typowy koncerniak, nastawiony na dużą sprzedaż napędzaną reklamą. Jak komuś smakuje niech pije, dla mnie to piwo drugiego, a trzeciego wyboru.",
                         ProductId = context.Product.First(x=>x.Picture=="kasztelanNiepasteryzowane.png").Id,
                     },
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "Czuć spirytem...",
                         ProductId = context.Product.First(x=>x.Picture=="kasztelanNiepasteryzowane.png").Id,
                     },
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "Na pohybel wszystkim przeciwnikom tego browaru - od lat dla mnie jedno z najlepszych piw w Polsce (mowa o koncerniakach).",
                         ProductId = context.Product.First(x=>x.Picture=="kasztelanMocne.png").Id,
                     },
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "Jest to jedyny Kasztelan ktory przypomina te piwo ktore browar warzyl w latach 90 tych przed zepsuciem smaku przez koncern Calsberga",
                         ProductId = context.Product.First(x=>x.Picture=="kasztelanMocne.png").Id,
                     },
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "dobre piwko polecam",
                         ProductId = context.Product.First(x=>x.Picture=="kasztelanMocne.png").Id,
                     },
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "Zachowane elegancko, tak jakie jak kiedyś",
                         ProductId = context.Product.First(x=>x.Picture=="kasztelanMocne.png").Id,
                     },
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "Typowy niedobry koncerniak, unikam jak ognia.",
                         ProductId = context.Product.First(x=>x.Picture=="tyskie.png").Id,
                     },
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "Ostatnio hejtowalem na Tyskie, ale musze sie z tego wycofac. Powiem tak: Podany pelny sklad (wielki plus), a w tym skladzie brak syrou glukozowego, glukozowo-fruktozowego ani kukurydzy! Rzetelna informacja i to sie ceni. Woda, slod i chmiel! Tak ma byc! Od razu odczuwam skok jakosci w gore. Musze uczciwie dac 6/10. Do tego wygrane piwo. Kupie ponownie.",
                         ProductId = context.Product.First(x=>x.Picture=="tyskie.png").Id,
                     },
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "woda z farbkom",
                         ProductId = context.Product.First(x=>x.Picture=="zubr.png").Id,
                     },
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "bardzo lubię żubra, ale oszukują klientów z wygraną i to moje ostatnie piwa. Nie tylko moje. Na 15 krat (300 piw) 0 wygranych",
                         ProductId = context.Product.First(x=>x.Picture=="zubr.png").Id,
                     },
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "Szczerze to w ciągu roku wygrałem 6 Żubrów. myślę, że nie źle a piwko wypiję 2-4 w ciągu weekendu. Co do smaku to fakt, od miesiąca-dwóch coś się zepsuło... Głowa boli po nim ;/",
                         ProductId = context.Product.First(x=>x.Picture=="zubr.png").Id,
                     },
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "dobre",
                         ProductId = context.Product.First(x=>x.Picture=="zubr.png").Id,
                     },
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "Co partia to inny smak. Raz się takie paskudne trafiło, walilo chemią, jakby z płukanki, że poszło do zlewu.",
                         ProductId = context.Product.First(x=>x.Picture=="zubr.png").Id,
                     },
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "Teraz znowu jest dobre. Uczciwy skład (woda, słody, chmiel), znowu jest goryczka.",
                         ProductId = context.Product.First(x=>x.Picture=="lechPremium.png").Id,
                     },
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "Pachnie ziołem po otwarciu xd",
                         ProductId = context.Product.First(x=>x.Picture=="lechPremium.png").Id,
                     },
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "Wygląd puszki po małym liftingu. Parę lat temu było z tym kiepsko, a teraz całkiem pijalny koncerniak.",
                         ProductId = context.Product.First(x=>x.Picture=="lechPremium.png").Id,
                     },
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "Do grilla pasuje, szalu nie robi ale ładny zapach po otwarciu butelki",
                         ProductId = context.Product.First(x=>x.Picture=="heineken.png").Id,
                     },
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "Smak to jeden wielki syyyf. Kupiłem w lidlu",
                         ProductId = context.Product.First(x=>x.Picture=="heineken.png").Id,
                     },
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "Zanim kraft zagościł w Polsce był to dla mnie synonim \"prestiżu\" i mam do Heniutka pewen sentyment.",
                         ProductId = context.Product.First(x=>x.Picture=="heineken.png").Id,
                     },
                     new Comment {
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         Date = DateTime.Now,
                         Content = "Piłem Heńka 2 lata temu w Holandii w knajpie, z kufla i był nie dobry, coś ala ten z biedry może trochę mniej wadliwy i słodszy.",
                         ProductId = context.Product.First(x=>x.Picture=="heineken.png").Id,
@@ -1052,172 +1052,172 @@ namespace Repository
             if (!context.Vote.Any()) {
                 var voteList = new List<Vote>() {
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         ProductId = context.Product.First(x=>x.Picture=="harnasJasnePelne.png").Id,
                         VoteValue = 1,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         ProductId = context.Product.First(x=>x.Picture=="harnasJasnePelne.png").Id,
                         VoteValue = 2,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "moderator").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Moderator").Id,
                         ProductId = context.Product.First(x=>x.Picture=="harnasJasnePelne.png").Id,
                         VoteValue = 1,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         ProductId = context.Product.First(x=>x.Picture=="harnasOkocimski.png").Id,
                         VoteValue = 1,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         ProductId = context.Product.First(x=>x.Picture=="harnasOkocimski.png").Id,
                         VoteValue = 4,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         ProductId = context.Product.First(x=>x.Picture=="okocim.png").Id,
                         VoteValue = 3,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         ProductId = context.Product.First(x=>x.Picture=="okocim.png").Id,
                         VoteValue = 2,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         ProductId = context.Product.First(x=>x.Picture=="kasztelanJasnePelne.png").Id,
                         VoteValue = 5,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         ProductId = context.Product.First(x=>x.Picture=="kasztelanJasnePelne.png").Id,
                         VoteValue = 4,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         ProductId = context.Product.First(x=>x.Picture=="kasztelanNiepasteryzowane.png").Id,
                         VoteValue = 2,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         ProductId = context.Product.First(x=>x.Picture=="kasztelanNiepasteryzowane.png").Id,
                         VoteValue = 5,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         ProductId = context.Product.First(x=>x.Picture=="kasztelanMocne.png").Id,
                         VoteValue = 1,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         ProductId = context.Product.First(x=>x.Picture=="kasztelanMocne.png").Id,
                         VoteValue = 2,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         ProductId = context.Product.First(x=>x.Picture=="tyskie.png").Id,
                         VoteValue = 3,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         ProductId = context.Product.First(x=>x.Picture=="tyskie.png").Id,
                         VoteValue = 3,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         ProductId = context.Product.First(x=>x.Picture=="zubr.png").Id,
                         VoteValue = 3,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         ProductId = context.Product.First(x=>x.Picture=="zubr.png").Id,
                         VoteValue = 4,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         ProductId = context.Product.First(x=>x.Picture=="lechPremium.png").Id,
                         VoteValue = 4,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         ProductId = context.Product.First(x=>x.Picture=="lechPremium.png").Id,
                         VoteValue = 5,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         ProductId = context.Product.First(x=>x.Picture=="reddsApple.png").Id,
                         VoteValue = 5,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         ProductId = context.Product.First(x=>x.Picture=="reddsApple.png").Id,
                         VoteValue = 3,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         ProductId = context.Product.First(x=>x.Picture=="lomzaExport.png").Id,
                         VoteValue = 5,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         ProductId = context.Product.First(x=>x.Picture=="lomzaExport.png").Id,
                         VoteValue = 4,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         ProductId = context.Product.First(x=>x.Picture=="rybnickiFull.png").Id,
                         VoteValue = 2,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         ProductId = context.Product.First(x=>x.Picture=="rybnickiFull.png").Id,
                         VoteValue = 3,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         ProductId = context.Product.First(x=>x.Picture=="koronaKsiazeca.png").Id,
                         VoteValue = 5,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         ProductId = context.Product.First(x=>x.Picture=="zywiecJasnePelne.png").Id,
                         VoteValue = 3,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         ProductId = context.Product.First(x=>x.Picture=="zywiecJasnePelne.png").Id,
                         VoteValue = 4,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         ProductId = context.Product.First(x=>x.Picture=="heineken.png").Id,
                         VoteValue = 3,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         ProductId = context.Product.First(x=>x.Picture=="heineken.png").Id,
                         VoteValue = 5,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         ProductId = context.Product.First(x=>x.Picture=="zywiecPorter.png").Id,
                         VoteValue = 4,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         ProductId = context.Product.First(x=>x.Picture=="tatraJasnePelne.png").Id,
                         VoteValue = 1,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        AccountId = context.Account.First(x=>x.Username == "User").Id,
                         ProductId = context.Product.First(x=>x.Picture=="ciechanMiodowe.png").Id,
                         VoteValue = 5,
                     },
                     new Vote{
-                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
                         ProductId = context.Product.First(x=>x.Picture=="ciechanMiodowe.png").Id,
                         VoteValue = 4,
                     },

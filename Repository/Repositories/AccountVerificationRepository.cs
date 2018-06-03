@@ -23,6 +23,10 @@ namespace Repository.Repositories
             throw new NotImplementedException();
         }
 
+        public bool Delete(AccountVerification entity) {
+            throw new NotImplementedException();
+        }
+
         public AccountVerification Edit(AccountVerification entity) {
             throw new NotImplementedException();
         }
