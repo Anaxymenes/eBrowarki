@@ -130,10 +130,8 @@ namespace Service.Config
             CreateMap<BeerDTO, Beer>()
                 .ForMember(dest => dest.Alcohol,
                 opt => opt.MapFrom(src => src.Alcohol))
-                .ForMember(dest => dest.Brewery.Id,
+                .ForMember(dest => dest.BreweryId,
                 opt => opt.MapFrom(src => src.ProducerId))
-                .ForMember(dest => dest.Brewery.Product.Name,
-                opt => opt.MapFrom(src => src.Producer))
                 ;
 
             CreateMap<Brewery, BreweryDTO>()
