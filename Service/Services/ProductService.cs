@@ -41,61 +41,7 @@ namespace Service.Services
         }
 
         public ProductDTO GetBreweryById(int id) {
-            throw new NotImplementedException();
-        }
-
-        protected ProductDTO GetProductDTO(Product result) {
-            ProductDTO productDTO = new ProductDTO() {
-                Id = result.Id,
-                Country = result.Country.Name,
-                CountryId = result.CountryId,
-                Date = result.Date,
-                Name = result.Name,
-                Description = result.Description,
-                Picture = result.Picture,
-
-            };
-            List<CommentDTO> commentList = new List<CommentDTO>();
-            if (result.Comments.Count > 0) {
-                foreach (var obj in result.Comments) {
-                    commentList.Add(
-                        new CommentDTO {
-                            AccountId = obj.AccountId,
-                            Author = obj.Account.Username,
-                            Content = obj.Content,
-                            Date = obj.Date,
-                            Id = obj.Id
-                        }
-                        );
-                }
-                productDTO.Comments = commentList;
-            }
-            if (result.Votes.Count > 0) {
-                int countOfVotes = result.Votes.Count;
-                int value = 1;
-                foreach (var obj in result.Votes)
-                    value += obj.VoteValue;
-                productDTO.Vote = (double)value / countOfVotes;
-            }
-            //if (result.IsBeer == true) {
-             BeerDTO beerDTO = new BeerDTO() {
-                Alcohol = result.Beer.Alcohol,
-                    //BeerType = result.Beer.BeerType.Name,
-                Producer = result.Beer.Brewery.Product.Name,
-                ProducerId = result.Beer.Brewery.Product.Id
-            };
-            productDTO.Beer = beerDTO;
-            //} else {
-            //    BreweryDTO breweryDTO = new BreweryDTO() {
-            //        NumberOfBuilding = result.Brewery.NumberOfBuilding,
-            //        Place = result.Brewery.Place,
-            //        PostalCode = result.Brewery.PostalCode,
-            //        PostOffice = result.Brewery.PostOffice,
-            //        Street = result.Brewery.Street
-            //    };
-            //    productDTO.Brewery = breweryDTO;
-            //}
-            return productDTO;
+            return _mapper.Map<ProductDTO>(_productRepository.GetBreweryById(id).First());
         }
     }
 }

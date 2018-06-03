@@ -34,13 +34,14 @@ namespace Repository.Repositories
             return _context.Product.Where(x => x.Approved == true && x.IsBeer == true)
                 .Include(beer => beer.Beer)
                     .ThenInclude(x => x.Brewery)
-                        .ThenInclude(x=>x.Product)
+                        .ThenInclude(x => x.Product)
                 .Include(x => x.Country)
                 .Include(x => x.Comments)
                     .ThenInclude(x => x.Account)
                 .Include(x => x.Votes)
-                .Take(itemsOnPage)
-                .Skip((page - 1) * itemsOnPage);
+                .Skip((page - 1) * itemsOnPage)
+                .Take(itemsOnPage);
+                
         }
 
         public IQueryable<Product> GetAllBeersByBeerType(string beerType) {
@@ -54,8 +55,9 @@ namespace Repository.Repositories
                         .Include(x => x.Comments)
                             .ThenInclude(x => x.Account)
                         .Include(x => x.Votes)
-                        .Take(itemsOnPage)
-                        .Skip((page-1)*itemsOnPage);
+                        .Skip((page - 1) * itemsOnPage)
+                        .Take(itemsOnPage);
+                        
         }
 
         public IQueryable<Product> GetBeerById(int id) {
