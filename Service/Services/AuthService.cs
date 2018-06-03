@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Repository.Interfaces;
 using Service.Interfaces;
+using Service.utils;
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
@@ -36,7 +37,7 @@ namespace Service.Services
         }
 
         public bool IsValid(AccountLoginVerificationDTO user, LoginDTO loginDTO) {
-            return user.Password.Equals(this.GetHashedPassword(loginDTO.Password, Encoding.UTF8.GetBytes(user.PasswordSalt)));
+            return user.Password.Equals(AuthMethods.GetHashedPassword(loginDTO.Password, Encoding.UTF8.GetBytes(user.PasswordSalt)));
         }
 
         public AccountLoginVerificationDTO GetUserByUserNameOrEmail(LoginDTO loginDTO) {
@@ -77,38 +78,7 @@ namespace Service.Services
             return jwTBearerToken;
         }
 
-        protected byte[] GetSalt() {
-            byte[] salt = new byte[32];
-            using (var rng = RandomNumberGenerator.Create()) {
-                rng.GetBytes(salt);
-            }
-            string result = Convert.ToBase64String(salt);
-            return Encoding.ASCII.GetBytes(result);
-        }
-
-        protected byte[] GetCodeVerification() {
-            byte[] salt = new byte[32 / 4];
-            using (var rng = RandomNumberGenerator.Create()) {
-                rng.GetBytes(salt);
-            }
-            string result = Convert.ToBase64String(salt);
-            return Encoding.ASCII.GetBytes(result);
-        }
-
-        protected string EncodeByteToString(byte[] value) {
-            return Encoding.UTF8.GetString(value);
-        }
-
-        protected string GetHashedPassword(string password, byte[] salt) {
-            string hashedPassword = Convert.ToBase64String(KeyDerivation.Pbkdf2(
-                    password: password,
-                    salt: salt,
-                    prf: KeyDerivationPrf.HMACSHA1,
-                    iterationCount: 10000,
-                    numBytesRequested: 256 / 8
-                ));
-            return hashedPassword;
-        }
+        
 
 
         public bool ExistUser(RegisterAccountDTO registerAccountDTO) {
@@ -116,17 +86,17 @@ namespace Service.Services
         }
 
         public bool RegisterUser(RegisterAccountDTO registerAccountDTO) {
-            byte[] salt = this.GetSalt();
+            byte[] salt = AuthMethods.GetSalt();
             Account account = new Account() {
                 Email = registerAccountDTO.Email,
                 Username = registerAccountDTO.Email.Substring(0,registerAccountDTO.Email.IndexOf('@')),
                 Active = false,
                 RoleId = 3,
-                Password = this.GetHashedPassword(registerAccountDTO.Password, salt),
-                PasswordSalt = this.EncodeByteToString(salt)
+                Password = AuthMethods.GetHashedPassword(registerAccountDTO.Password, salt),
+                PasswordSalt = AuthMethods.EncodeByteToString(salt)
             };
             AccountVerification accountVerification = new AccountVerification() {
-                CodeVerification = this.EncodeByteToString(this.GetCodeVerification())
+                CodeVerification = AuthMethods.EncodeByteToString(AuthMethods.GetCodeVerification())
             };
             try {
                 _accountRepository.RegisterUser(account, accountVerification);
