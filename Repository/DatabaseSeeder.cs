@@ -389,7 +389,7 @@ namespace Repository
             if (!context.Product.Any()) {
                 var productList = new List<Product>() {
                     new Product {
-                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
                         Date = DateTime.Now,
                         CountryId = context.Country.First(x=>x.Name=="Poland").Id,
                         IsBeer=false,
@@ -399,7 +399,7 @@ namespace Repository
                         Approved = true
                     },
                     new Product {
-                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
                         Date = DateTime.Now,
                         CountryId = context.Country.First(x=>x.Name=="Poland").Id,
                         IsBeer=false,
@@ -409,7 +409,7 @@ namespace Repository
                         Approved = true
                     },
                     new Product {
-                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
                         Date = DateTime.Now,
                         CountryId = context.Country.First(x=>x.Name=="Poland").Id,
                         IsBeer=false,
@@ -419,7 +419,7 @@ namespace Repository
                         Approved = true
                     },
                     new Product {
-                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
                         Date = DateTime.Now,
                         CountryId = context.Country.First(x=>x.Name=="Poland").Id,
                         IsBeer=false,
@@ -429,7 +429,7 @@ namespace Repository
                         Approved = true
                     },
                     new Product {
-                        AccountId = context.Account.First(x=>x.Username == "Admin").Id,
+                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
                         Date = DateTime.Now,
                         CountryId = context.Country.First(x=>x.Name=="Poland").Id,
                         IsBeer=false,
