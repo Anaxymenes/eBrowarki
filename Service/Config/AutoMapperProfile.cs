@@ -2,6 +2,7 @@
 using Data.DBModels;
 using Data.DTO;
 using Data.DTO.Add;
+using Service.utils;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -92,6 +93,22 @@ namespace Service.Config
                 opt => opt.MapFrom(src => src.Password))
                 .ForMember(dest => dest.PasswordSalt,
                 opt => opt.MapFrom(src => src.PasswordSalt))
+                ;
+
+            byte[] salt = AuthMethods.GetSalt();
+            CreateMap<RegisterAccountDTO, Account>()
+                .ForMember(dest => dest.Email,
+                opt => opt.MapFrom(src => src.Email))
+                .ForMember(dest => dest.Username,
+                opt => opt.MapFrom(src => src.Email.Substring(0, src.Email.IndexOf('@'))))
+                .ForMember(dest => dest.Active,
+                opt => opt.UseValue(false))
+                .ForMember(dest => dest.RoleId,
+                opt => opt.UseValue(3))
+                .ForMember(dest => dest.Password,
+                opt => opt.MapFrom(src => AuthMethods.GetHashedPassword(src.Password, salt)))
+                .ForMember(dest => dest.PasswordSalt,
+                opt => opt.MapFrom(src => AuthMethods.EncodeByteToString(salt)))
                 ;
 
             CreateMap<Beer, BeerDTO>()
