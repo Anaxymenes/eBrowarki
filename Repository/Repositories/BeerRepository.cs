@@ -25,7 +25,7 @@ namespace Repository.Repositories
             }
         }
 
-        public bool Add(Product product, Beer beer, List<BeerTypeBeer> beerTypeBeerList) {
+        public bool Add(Product product, Beer beer, List<int> beerTypeBeerList) {
             var result = false;
             using( var transaction = _context.Database.BeginTransaction()) {
                 try {
@@ -35,8 +35,12 @@ namespace Repository.Repositories
                     beer.ProductId = productId;
                     _context.Beer.Add(beer);
                     _context.SaveChanges();
-                    beerTypeBeerList.ForEach(x => x.ProductId = productId);
-                    _context.BeerTypeBeer.AddRange(beerTypeBeerList);
+                    List<BeerTypeBeer> list = new List<BeerTypeBeer>();
+                    for (int i = 0; i < beerTypeBeerList.Count; i++)
+                        list.Add(new BeerTypeBeer { BeerTypeId = beerTypeBeerList[i], ProductId = productId });
+                    //beerTypeBeerList.ForEach(x => x.ProductId = productId);
+                    //_context.BeerTypeBeer.AddRange(beerTypeBeerList);
+                    _context.BeerTypeBeer.AddRange(list);
                     _context.SaveChanges();
                     result = true;
                 }catch(Exception e) {

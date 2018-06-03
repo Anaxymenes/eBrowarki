@@ -30,11 +30,9 @@ namespace Service.Services
             int authorId = Convert.ToInt32(claimsList.Find(x => x.Type == "nameidentifier").Value);
             var product = _mapper.Map<Product>(beerAdd);
             product.AccountId = authorId;
+            product.IsBeer = true;
             var beer = _mapper.Map<Beer>(beerAdd);
-            List<BeerTypeBeer> beerTypeBeerList = new List<BeerTypeBeer>();
-            foreach (var obj in beerAdd.BeerTypeBeerList)
-                beerTypeBeerList.Add(_mapper.Map<BeerTypeBeer>(obj));
-            if (_beerRepository.Add(product, beer, beerTypeBeerList))
+            if (_beerRepository.Add(product, beer, beerAdd.BeerTypeBeerList))
                 return true;
             return false;
         }

@@ -7,6 +7,6 @@ namespace Repository.Interfaces
 {
 
     public interface IBeerRepository : IRepository<Beer> {
-        bool Add(Product product, Beer beer, List<BeerTypeBeer> beerTypeBeerList);
+        bool Add(Product product, Beer beer, List<int> beerTypeBeerList);
     }
 }
