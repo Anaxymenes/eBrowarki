@@ -1230,6 +1230,8 @@ namespace Repository
                         VoteValue = 4,
                     },
                 };
+                context.AddRange(voteList);
+                context.SaveChanges();
             };
         }
     }
