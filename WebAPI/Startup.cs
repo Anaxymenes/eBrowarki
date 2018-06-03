@@ -93,6 +93,9 @@ namespace WebAPI
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IAccountRepository, AccountRepository>();
 
+            services.AddScoped<ICommentService, CommentService>();
+            services.AddScoped<ICommentRepository, CommentRepository>();
+
             services.AddScoped<IAccountVerificationRepository, AccountVerificationRepository>();
             services.AddScoped<IAccountVerificationService, AccountVerificationService>();
 

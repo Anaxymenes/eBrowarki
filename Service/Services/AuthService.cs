@@ -48,16 +48,17 @@ namespace Service.Services
             var results = _accountRepository.GetUserByUsernameOrEmail(loginDTO.Email);
             if (results == null)
                 return null;
-            return new AccountLoginVerificationDTO() {
-                Id = results.Id,
-                Active = results.Active,
-                Avatar = results.Avatar,
-                Email = results.Email,
-                Password = results.Password,
-                PasswordSalt = results.PasswordSalt,
-                Role = results.Role.Name,
-                Username = results.Username
-            };
+            //return new AccountLoginVerificationDTO() {
+            //    Id = results.Id,
+            //    Active = results.Active,
+            //    Avatar = results.Avatar,
+            //    Email = results.Email,
+            //    Password = results.Password,
+            //    PasswordSalt = results.PasswordSalt,
+            //    Role = results.Role.Name,
+            //    Username = results.Username
+            //};
+            return _mapper.Map<AccountLoginVerificationDTO>(results);
         }
 
         private JWTBearerToken JwtTokenBuilder(AccountLoginVerificationDTO user) {
@@ -70,15 +71,26 @@ namespace Service.Services
                 new Claim(ClaimTypes.Name, user.Username,"Username"),
                 new Claim(ClaimTypes.Role, user.Role, "Role")
             };
+            var claimsResresh = new[] {
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString(),"Id"),
+                new Claim(ClaimTypes.Email,user.Email,"Email"),
+            };
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
             var token = new JwtSecurityToken(issuer: Configuration["JWT:issuer"],
                 audience: Configuration["JWT:audience"],
                 signingCredentials: credentials,
                 claims: claims,
                 expires: DateTime.Now.AddMinutes(5));
+            var refreshToken = new JwtSecurityToken(issuer: Configuration["JWT:issuer"],
+                audience: Configuration["JWT:audience"],
+                signingCredentials: credentials,
+                claims: claims,
+                expires: DateTime.Now.AddDays(7));
             JWTBearerToken jwTBearerToken = new JWTBearerToken();
             jwTBearerToken.Token = new JwtSecurityTokenHandler().WriteToken(token);
             jwTBearerToken.Expires = token.ValidTo;
+            jwTBearerToken.RefreshToken = new JwtSecurityTokenHandler().WriteToken(refreshToken);
+            jwTBearerToken.RefreshTokenExpires = refreshToken.ValidTo;
             return jwTBearerToken;
         }
 

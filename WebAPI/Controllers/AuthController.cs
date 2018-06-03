@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Service.Interfaces;
+using Service.utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,11 +35,7 @@ namespace WebAPI.Controllers
         [HttpGet("test")]
         public IActionResult Test(string email) {
             //return Ok(_authService.SendVerificationEmail(email));
-            return Ok(HttpContext.User.Claims.Select(x => new {
-                Type = x.Type,
-                Value = x.Value
-            }
-                ));
+            return Ok(ClaimsMethods.GetClaimsList(HttpContext.User.Claims));
         }
 
         [HttpPost("register")]
@@ -52,6 +49,20 @@ namespace WebAPI.Controllers
                 return BadRequest("Błąd podczas rejestracji użytkownika. Spróbuj ponownie później.");
             return Ok();
 
+        }
+        [Authorize]
+        [HttpPost("refreshToken")]
+        public IActionResult RefreshToken([FromHeader] string refreshToken) {
+            var claims = ClaimsMethods.GetClaimsList(HttpContext.User.Claims);
+            List<ClaimDTO> a = new List<ClaimDTO>();
+            foreach (var obj in User.Claims) {
+                a.Add(new ClaimDTO {
+                    Type = obj.Subject.NameClaimType,
+                    Value = obj.Value
+                });
+            }
+            return Ok(a);
+            
         }
 
         [HttpPost("sendVerificationEmail")]

@@ -21,7 +21,7 @@ namespace Service.Services
         }
 
         public bool Add(BeerAdd beerAdd, List<ClaimDTO> claimsList) {
-            int authorId = Convert.ToInt32(claimsList.Find(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier").Value);
+            int authorId = Convert.ToInt32(claimsList.Find(x => x.Type == "nameidentifier").Value);
             Product product = new Product() {
                AccountId =  authorId,
                CountryId = beerAdd.CountryId,

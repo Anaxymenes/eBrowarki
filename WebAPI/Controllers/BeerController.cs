@@ -3,6 +3,7 @@ using Data.DTO.Add;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Interfaces;
+using Service.utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,10 +23,8 @@ namespace WebAPI.Controllers
         [Authorize]
         [HttpPost("addBeer")]
         public IActionResult AddBeer([FromBody] BeerAdd beerAdd) {
-            List<ClaimDTO> claims = new List<ClaimDTO>();
-            foreach (var claim in User.Claims)
-                claims.Add(new ClaimDTO { Type = claim.Type, Value = claim.Value });
-            if (_beerService.Add(beerAdd, claims))
+            //var a = ClaimsMethods.GetClaimsList(User.Claims);
+            if (_beerService.Add(beerAdd, ClaimsMethods.GetClaimsList(User.Claims)))
                 return Ok();
             return BadRequest();
             //return Ok(claims);
