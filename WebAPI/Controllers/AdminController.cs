@@ -28,5 +28,12 @@ namespace WebAPI.Controllers
             return BadRequest();
         }
 
+        [HttpPost("blockUserManagement")]
+        public IActionResult BlockUserManagement([FromBody] BlockedUser blockedUser) {
+            if (_accountService.BlockStateUserManagement(blockedUser))
+                return Ok();
+            return BadRequest();
+        }
+
     }
 }

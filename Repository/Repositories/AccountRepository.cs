@@ -38,6 +38,18 @@ namespace Repository.Repositories
             throw new NotImplementedException();
         }
 
+        public bool ChangeBlockUserStatus(BlockedUser blockedUser) {
+            try {
+                var user = _context.Account.First(x => x.Id == blockedUser.UserId);
+                user.Blocked = blockedUser.BlockedState;
+                _context.Account.Update(user);
+                _context.SaveChanges();
+                return true;
+            }catch(Exception e) {
+                return false;
+            }
+        }
+
         public bool Delete(int id, int userId) {
             throw new NotImplementedException();
         }

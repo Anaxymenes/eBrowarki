@@ -17,6 +17,10 @@ namespace Service.Services
             this._mapper = mapper;
         }
 
+        public bool BlockStateUserManagement(BlockedUser blockedUser) {
+            return _accountRepository.ChangeBlockUserStatus(blockedUser);
+        }
+
         public bool UpdateRole(UpdateRole updateRole) {
             return _accountRepository.UpdateRole(updateRole);
         }

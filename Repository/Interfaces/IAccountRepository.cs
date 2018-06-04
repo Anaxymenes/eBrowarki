@@ -13,6 +13,7 @@ namespace Repository.Interfaces
         void RegisterUser(Account account,AccountVerification accountVerification);
         bool ActiveAccount(ActivatedAccount activatedAccount);
         bool UpdateRole(UpdateRole updateRole);
+        bool ChangeBlockUserStatus(BlockedUser blockedUser);
 
     }
 }
