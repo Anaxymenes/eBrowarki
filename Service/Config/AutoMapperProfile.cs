@@ -3,6 +3,7 @@ using Data.DBModels;
 using Data.DTO;
 using Data.DTO.Add;
 using Data.DTO.Edit;
+using Data.DTO.FormList;
 using Service.utils;
 using System;
 using System.Collections.Generic;
@@ -276,6 +277,27 @@ namespace Service.Config
                 opt => opt.MapFrom(src => src.Picture))
                 .ForMember(dest => dest.CountryId,
                 opt => opt.MapFrom(src => src.CountryId))
+                ;
+
+            CreateMap<BeerType, BeerTypeFormList>()
+                .ForMember(dest => dest.text,
+                opt => opt.MapFrom(src => src.Name))
+                .ForMember(dest => dest.value,
+                opt => opt.MapFrom(src => src.Id))
+                ;
+
+            CreateMap<Brewery, BreweryFormList>()
+                .ForMember(dest => dest.text,
+                opt => opt.MapFrom(src => src.Product.Name))
+                .ForMember(dest => dest.value,
+                opt => opt.MapFrom(src => src.Id))
+                ;
+
+            CreateMap<Country, CountryFormList>()
+                .ForMember(dest => dest.text,
+                opt => opt.MapFrom(src => src.Name))
+                .ForMember(dest => dest.value,
+                opt => opt.MapFrom(src => src.Id))
                 ;
         }
     }
