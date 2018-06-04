@@ -37,7 +37,9 @@ namespace Service.Services
         }
 
         public CommentDTO Edit(CommentEdit commentEdit, List<ClaimDTO> claims) {
-            var results = _commentRepository.Edit(_mapper.Map<Comment>(commentEdit), 
+            var comment = _mapper.Map<Comment>(commentEdit);
+            comment.Date = DateTime.Now;
+            var results = _commentRepository.Edit(comment, 
                 Convert.ToInt32(claims.Find(x => x.Type == "nameidentifier").Value));
             if (results != null)
                 return _mapper.Map<CommentDTO>(results);
