@@ -238,6 +238,45 @@ namespace Service.Config
                     }
                 })
                 ;
+
+            CreateMap<BeerEdit, Beer>()
+                .ForMember(dest => dest.Id,
+                opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.Alcohol,
+                opt => opt.MapFrom(src => src.Alcohol))
+                .ForMember(dest => dest.BreweryId,
+                opt => opt.MapFrom(src => src.ProducerId))
+                ;
+
+            CreateMap<BreweryEdit, Brewery>()
+                .ForMember(dest => dest.Id,
+                opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.Place,
+                opt => opt.MapFrom(src => src.Place))
+                .ForMember(dest => dest.PostalCode,
+                opt => opt.MapFrom(src => src.PostalCode))
+                .ForMember(dest => dest.PostOffice,
+                opt => opt.MapFrom(src => src.PostOffice))
+                .ForMember(dest => dest.Street,
+                opt => opt.MapFrom(src => src.Street))
+                .ForMember(dest => dest.NumberOfBuilding,
+                opt => opt.MapFrom(src => src.NumberOfBuilding))
+                ;
+
+            CreateMap<ProductEdit, Product>()
+                .ForMember(dest => dest.Id,
+                opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.Name,
+                opt => opt.MapFrom(src => src.Name))
+                .ForMember(dest => dest.Description,
+                opt => opt.MapFrom(src => src.Description))
+                .ForMember(dest => dest.Date,
+                opt => opt.MapFrom(src => src.Date))
+                .ForMember(dest => dest.Picture,
+                opt => opt.MapFrom(src => src.Picture))
+                .ForMember(dest => dest.CountryId,
+                opt => opt.MapFrom(src => src.CountryId))
+                ;
         }
     }
 }
