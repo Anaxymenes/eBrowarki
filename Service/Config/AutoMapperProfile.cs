@@ -48,6 +48,19 @@ namespace Service.Config
                 opt => opt.MapFrom(src => src.PostalCode))
                 ;
 
+            CreateMap<BreweryAdd, Product>()
+                .ForMember(dest => dest.Name,
+                opt => opt.MapFrom(src => src.Name))
+                .ForMember(dest => dest.Description,
+                opt => opt.MapFrom(src => src.Description))
+                .ForMember(dest => dest.Picture,
+                opt => opt.MapFrom(src => src.Picture))
+                .ForMember(dest => dest.CountryId,
+                opt => opt.MapFrom(src => src.CountryId))
+                .ForMember(dest => dest.Date,
+                opt => opt.UseValue(DateTime.Now))
+                ;
+
             CreateMap<BeerTypeBeerDTO, BeerTypeBeer>()
                 .ForMember(dest => dest.BeerTypeId,
                 opt => opt.MapFrom(src => src.BeerTypeId))
