@@ -2,6 +2,7 @@
 using Data.DBModels;
 using Data.DTO;
 using Data.DTO.Add;
+using Data.DTO.FormList;
 using Repository.Interfaces;
 using Service.Interfaces;
 using System;
@@ -33,6 +34,17 @@ namespace Service.Services
             if (_breweryRepository.Add(product, brewery))
                 return true;
             return false;
+        }
+
+        public List<BreweryFormList> GetAllFormList() {
+            var resultsDb = _productRepository.GetAllBreweriesWithNotApproved();
+            List<BreweryFormList> results = new List<BreweryFormList>();
+            if(results != null) {
+                foreach (var obj in resultsDb)
+                    results.Add(_mapper.Map<BreweryFormList>(obj));
+                return results;
+            }
+            return null;
         }
     }
 }

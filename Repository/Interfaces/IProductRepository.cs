@@ -12,5 +12,7 @@ namespace Repository.Interfaces
         IQueryable<Product> GetBeerById(int id);
         IQueryable<Product> GetBreweryById(int id);
         IQueryable<Product> GetAllBeersByBeerType(string beerType);
+        IQueryable<Product> GetAllBeersWithNotApproved();
+        IQueryable<Product> GetAllBreweriesWithNotApproved();
     }
 }

@@ -56,6 +56,17 @@ namespace Repository.Repositories
             throw new NotImplementedException();
         }
 
+        public IQueryable<Product> GetAllBeersWithNotApproved() {
+            return _context.Product.Where(x => x.IsBeer == true)
+                .Include(beer => beer.Beer)
+                    .ThenInclude(x => x.Brewery)
+                        .ThenInclude(x => x.Product)
+                .Include(x => x.Country)
+                .Include(x => x.Comments)
+                    .ThenInclude(x => x.Account)
+                .Include(x => x.Votes);
+        }
+
         public IQueryable<Product> GetAllBreweries(int page, int itemsOnPage) {
             return _context.Product.Where(x => x.Approved == true && x.IsBeer == false)
                         .Include(x => x.Brewery)
@@ -66,6 +77,15 @@ namespace Repository.Repositories
                         .Skip((page - 1) * itemsOnPage)
                         .Take(itemsOnPage);
                         
+        }
+
+        public IQueryable<Product> GetAllBreweriesWithNotApproved() {
+            return _context.Product.Where(x => x.IsBeer == false)
+                        .Include(x => x.Brewery)
+                        .Include(x => x.Country)
+                        .Include(x => x.Comments)
+                            .ThenInclude(x => x.Account)
+                        .Include(x => x.Votes);
         }
 
         public IQueryable<Product> GetBeerById(int id) {

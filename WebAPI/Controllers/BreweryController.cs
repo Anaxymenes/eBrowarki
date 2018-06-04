@@ -32,5 +32,13 @@ namespace WebAPI.Controllers
         public IActionResult Edit([FromBody] ProductDTO breweryDTO) {
             return BadRequest();
         }
+
+        [HttpGet("getAllToForm")]
+        public IActionResult GetAllBreweryFormList() {
+            var result = _breweryService.GetAllFormList();
+            if (result == null || result.Count == 0)
+                return BadRequest();
+            return Ok(result);
+        }
     }
 }
