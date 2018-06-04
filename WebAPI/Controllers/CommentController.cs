@@ -39,9 +39,9 @@ namespace WebAPI.Controllers
                 "Jeśli błąd będzie się powtarzał skontaktuj się z administratorem");
         }
 
-        [HttpDelete]
-        public IActionResult DeleteComment([FromBody]int commentId) {
-            if (_commentService.Delete(commentId, ClaimsMethods.GetClaimsList(HttpContext.User.Claims)) != true)
+        [HttpDelete("{id}")]
+        public IActionResult DeleteComment(int id) {
+            if (_commentService.Delete(id, ClaimsMethods.GetClaimsList(HttpContext.User.Claims)) != true)
                 return Ok();
             return BadRequest();
         }

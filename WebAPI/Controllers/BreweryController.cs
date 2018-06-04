@@ -33,6 +33,7 @@ namespace WebAPI.Controllers
             return BadRequest();
         }
 
+        [AllowAnonymous]
         [HttpGet("getAllToForm")]
         public IActionResult GetAllBreweryFormList() {
             var result = _breweryService.GetAllFormList();
