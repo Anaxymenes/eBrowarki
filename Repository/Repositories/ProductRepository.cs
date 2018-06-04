@@ -28,6 +28,8 @@ namespace Repository.Repositories
 
         public bool AddVote(Vote vote) {
             try {
+                if (_context.Vote.Any(x => x.AccountId == vote.AccountId && x.ProductId == vote.ProductId))
+                    return false;
                 _context.Vote.Add(vote);
                 _context.SaveChanges();
                 return true;
