@@ -99,6 +99,12 @@ namespace WebAPI
             services.AddScoped<IAccountVerificationRepository, AccountVerificationRepository>();
             services.AddScoped<IAccountVerificationService, AccountVerificationService>();
 
+            services.AddScoped<ICountryService, CountryService>();
+            services.AddScoped<ICountryRepository, CountryRepository>();
+
+            services.AddScoped<IBeerTypeService, BeerTypeService>();
+            services.AddScoped<IBeerTypeRepository, BeerTypeRepository>();
+
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         }
 
