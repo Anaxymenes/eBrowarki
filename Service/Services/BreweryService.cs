@@ -50,8 +50,8 @@ namespace Service.Services
             int authorId = Convert.ToInt32(claimsList.Find(x => x.Type == "nameidentifier").Value);
             var product = _mapper.Map<Product>(breweryAdd);
             var brewery = _mapper.Map<Brewery>(breweryAdd);
-
-
+            if (_breweryRepository.Add(product, brewery))
+                return true;
             return false;
         }
     }

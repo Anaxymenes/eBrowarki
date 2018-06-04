@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class BeerController : Controller
     {
@@ -20,8 +21,8 @@ namespace WebAPI.Controllers
             _beerService = beerService;
         }
 
-        [Authorize]
-        [HttpPost("addBeer")]
+        
+        [HttpPost]
         public IActionResult AddBeer([FromBody] BeerAdd beerAdd) {
             if (_beerService.Add(beerAdd, ClaimsMethods.GetClaimsList(User.Claims)))
                 return Ok();

@@ -26,6 +26,25 @@ namespace Repository.Repositories
 
         }
 
+        public bool Add(Product product, Brewery brewery) {
+            var result = false;
+            using(var transaction = _context.Database.BeginTransaction()) {
+                try {
+                    _context.Product.Add(product);
+                    _context.SaveChanges();
+                    var productId = _context.Product.Last().Id;
+                    brewery.ProductId = productId;
+                    _context.Brewery.Add(brewery);
+                    _context.SaveChanges();
+                    transaction.Commit();
+                    result = true;
+                }catch(Exception e) {
+                    transaction.Rollback();
+                }
+            }
+            return result;
+        }
+
         public bool Delete(int id, int userId) {
             throw new NotImplementedException();
         }

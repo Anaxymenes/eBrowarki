@@ -1,5 +1,6 @@
 ﻿using Data.DTO;
 using Data.DTO.Add;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Interfaces;
 using Service.utils;
@@ -10,6 +11,7 @@ using System.Threading.Tasks;
 
 namespace WebAPI.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public class BreweryController : Controller {
 
@@ -19,7 +21,7 @@ namespace WebAPI.Controllers
             _breweryService = breweryService;
         }
 
-        [HttpPost("addBrewery")]
+        [HttpPost]
         public IActionResult AddBrewery([FromBody] BreweryAdd breweryAdd) {
             if (_breweryService.Add(breweryAdd, ClaimsMethods.GetClaimsList(HttpContext.User.Claims)))
                 return Ok();

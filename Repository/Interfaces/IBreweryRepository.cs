@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Repository.Interfaces
 {
-    public interface IBreweryRepository : IRepository<Brewery>
-    {
+    public interface IBreweryRepository : IRepository<Brewery> {
+        bool Add(Product product, Brewery brewery);
     }
 }
