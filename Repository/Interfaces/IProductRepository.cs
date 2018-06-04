@@ -14,5 +14,6 @@ namespace Repository.Interfaces
         IQueryable<Product> GetAllBeersByBeerType(string beerType);
         IQueryable<Product> GetAllBeersWithNotApproved();
         IQueryable<Product> GetAllBreweriesWithNotApproved();
+        bool AddVote(Vote vote);
     }
 }

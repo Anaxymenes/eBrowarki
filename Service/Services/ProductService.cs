@@ -27,7 +27,10 @@ namespace Service.Services
 
             //};
             //return _productRepository.AddVote()
-            return false;
+            var authorId = Convert.ToInt32(claims.First(x => x.Type == "nameidentifier").Value);
+            var vote = _mapper.Map<Vote>(voteDTO);
+            vote.AccountId = authorId;
+            return _productRepository.AddVote(vote);
         }
 
         public List<ProductDTO> GetAllProductByType(bool isBeer, int page, int itemsOnPage) {

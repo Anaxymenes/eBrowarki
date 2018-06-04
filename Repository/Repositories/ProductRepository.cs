@@ -26,6 +26,16 @@ namespace Repository.Repositories
             }
         }
 
+        public bool AddVote(Vote vote) {
+            try {
+                _context.Vote.Add(vote);
+                _context.SaveChanges();
+                return true;
+            }catch(Exception e) {
+                return false;
+            }
+        }
+
         public bool Delete(int id, int userId) {
             throw new NotImplementedException();
         }
