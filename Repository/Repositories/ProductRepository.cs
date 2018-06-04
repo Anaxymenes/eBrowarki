@@ -36,6 +36,18 @@ namespace Repository.Repositories
             }
         }
 
+        public bool ApproveProduct(int id) {
+            try {
+                var product = _context.Product.First(x => x.Id == id);
+                product.Approved = true;
+                _context.Add(product);
+                _context.SaveChanges();
+                return true;
+            }catch(Exception e) {
+                return false;
+            }
+        }
+
         public bool Delete(int id, int userId) {
             throw new NotImplementedException();
         }

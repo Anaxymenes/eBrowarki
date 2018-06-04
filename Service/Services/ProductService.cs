@@ -33,6 +33,10 @@ namespace Service.Services
             return _productRepository.AddVote(vote);
         }
 
+        public bool ApproveProduct(int id) {
+            return _productRepository.ApproveProduct(id);
+        }
+
         public List<ProductDTO> GetAllProductByType(bool isBeer, int page, int itemsOnPage) {
             List<ProductDTO> results = new List<ProductDTO>();
             if (isBeer) {

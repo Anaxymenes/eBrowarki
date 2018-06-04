@@ -15,5 +15,6 @@ namespace Repository.Interfaces
         IQueryable<Product> GetAllBeersWithNotApproved();
         IQueryable<Product> GetAllBreweriesWithNotApproved();
         bool AddVote(Vote vote);
+        bool ApproveProduct(int id);
     }
 }

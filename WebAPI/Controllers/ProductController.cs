@@ -47,6 +47,14 @@ namespace WebAPI.Controllers
             return BadRequest();
         }
 
+        [Authorize(Roles ="Moderator,Admin")]
+        [HttpPost("approveProduct/{id}")]
+        public IActionResult ApproveProduct(int id) {
+            if (_productService.ApproveProduct(id))
+                return Ok();
+            return BadRequest();
+        }
+
 
     }
 }

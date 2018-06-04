@@ -11,5 +11,6 @@ namespace Service.Interfaces
         ProductDTO GetBreweryById(int id);
         List<ProductDTO> GetAllProductByType(bool v, int page, int itemsOnPage);
         bool AddVote(VoteDTO voteDTO, List<ClaimDTO> claims);
+        bool ApproveProduct(int id);
     }
 }
