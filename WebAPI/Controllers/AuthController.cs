@@ -1,4 +1,5 @@
 ﻿using Data.DTO;
+using Data.DTO.Edit;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -78,5 +79,7 @@ namespace WebAPI.Controllers
                 return Ok("Konto pomyślnie aktywowane");
             return BadRequest("Błąd aktywacji");
         }
+
+        
     }
 }

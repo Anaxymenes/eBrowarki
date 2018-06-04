@@ -105,6 +105,8 @@ namespace WebAPI
             services.AddScoped<IBeerTypeService, BeerTypeService>();
             services.AddScoped<IBeerTypeRepository, BeerTypeRepository>();
 
+            services.AddScoped<IAccountService, AccountService>();
+
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         }
 

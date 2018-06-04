@@ -1,5 +1,6 @@
 ﻿using Data.DBModels;
 using Data.DTO;
+using Data.DTO.Edit;
 using Microsoft.EntityFrameworkCore;
 using Repository.Interfaces;
 using System;
@@ -74,6 +75,20 @@ namespace Repository.Repositories
             accountVerification.AccountId = addedAccount.Id;
             _context.Add(accountVerification);
             _context.SaveChanges();
+        }
+
+        public bool UpdateRole(UpdateRole updateRole) {
+            if (!_context.Account.Any(x => x.RoleId != updateRole.RoleId && x.Id == updateRole.AccountId))
+                return false;
+            var user = _context.Account.First(x => x.Id == updateRole.AccountId);
+            user.RoleId = updateRole.RoleId;
+            try {
+                _context.Account.Update(user);
+                _context.SaveChanges();
+                return true;
+            }catch (Exception e) {
+                return false; 
+            }
         }
     }
 }
