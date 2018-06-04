@@ -8,6 +8,12 @@ using System.Text;
 namespace Repository.Repositories
 {
     public class BeerTypeRepository : IBeerTypeRepository {
+        private readonly DatabaseContext _context;
+
+        public BeerTypeRepository(DatabaseContext context) {
+            this._context = context;
+        }
+
         public BeerType Add(BeerType entity) {
             throw new NotImplementedException();
         }
@@ -21,7 +27,7 @@ namespace Repository.Repositories
         }
 
         public IQueryable<BeerType> GetAll() {
-            throw new NotImplementedException();
+            return _context.BeerType.AsQueryable();
         }
     }
 }

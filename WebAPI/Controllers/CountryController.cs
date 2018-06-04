@@ -18,8 +18,8 @@ namespace WebAPI.Controllers
             this._countryService = countryService;
         }
 
-        [HttpGet]
-        public IActionResult GetAll() {
+        [HttpGet("getAllToForm")]
+        public IActionResult GetAllCountryFormList() {
             var result = _countryService.GetAllFormList();
             if (result == null || result.Count == 0)
                 return BadRequest();
