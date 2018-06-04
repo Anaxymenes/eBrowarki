@@ -42,7 +42,7 @@ namespace Repository.Repositories
             try {
                 var product = _context.Product.First(x => x.Id == id);
                 product.Approved = true;
-                _context.Add(product);
+                _context.Product.Update(product);
                 _context.SaveChanges();
                 return true;
             }catch(Exception e) {

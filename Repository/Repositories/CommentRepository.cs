@@ -44,7 +44,7 @@ namespace Repository.Repositories
             var user = _context.Account.First(x => x.Id == userId);
             if (user.Role.Name == "Admin" || user.Role.Name == "Moderator" || entity.AccountId == userId) {
                 try {
-                    _context.Add(entity);
+                    _context.Update(entity);
                     _context.SaveChanges();
                     return entity;
                 } catch (Exception e) {
