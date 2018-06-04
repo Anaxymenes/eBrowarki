@@ -175,12 +175,11 @@ namespace Service.Config
                 ;
 
             CreateMap<CommentAdd, Comment>()
+                .BeforeMap((src, dest) => dest.Date = DateTime.Now)
                 .ForMember(dest => dest.ProductId,
                 opt => opt.MapFrom(src => src.ProductId))
                 .ForMember(dest => dest.Content,
                 opt => opt.MapFrom(src => src.Content))
-                .ForMember(dest => dest.Date,
-                opt => opt.UseValue(DateTime.Now))
                 ;
 
             CreateMap<CommentEdit, Comment>()
