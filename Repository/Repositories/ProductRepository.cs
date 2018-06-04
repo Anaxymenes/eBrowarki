@@ -65,6 +65,8 @@ namespace Repository.Repositories
                 .Include(beer => beer.Beer)
                     .ThenInclude(x => x.Brewery)
                         .ThenInclude(x => x.Product)
+                .Include(x=>x.BeerTypeBeers)
+                    .ThenInclude(x=>x.BeerType)
                 .Include(x => x.Country)
                 .Include(x => x.Comments)
                     .ThenInclude(x => x.Account)
@@ -83,6 +85,8 @@ namespace Repository.Repositories
                 .Include(beer => beer.Beer)
                     .ThenInclude(x => x.Brewery)
                         .ThenInclude(x => x.Product)
+                 .Include(x => x.BeerTypeBeers)
+                    .ThenInclude(x => x.BeerType)
                 .Include(x => x.Country)
                 .Include(x => x.Comments)
                     .ThenInclude(x => x.Account)
@@ -111,23 +115,33 @@ namespace Repository.Repositories
         }
 
         public IQueryable<Product> GetBeerById(int id) {
-            return _context.Product.Where(x=>x.Id == id)
+            try {
+                return _context.Product.Where(x => x.Id == id && x.IsBeer == true)
                 .Include(beer => beer.Beer)
                     .ThenInclude(x => x.Brewery)
                         .ThenInclude(x => x.Product)
+                .Include(x => x.BeerTypeBeers)
+                    .ThenInclude(x => x.BeerType)
                 .Include(x => x.Country)
                 .Include(x => x.Comments)
                     .ThenInclude(x => x.Account)
                 .Include(x => x.Votes);
+            }catch(Exception e) {
+                return null;
+            }
         }
 
         public IQueryable<Product> GetBreweryById(int id) {
-            return _context.Product.Where(x => x.Id==id)
+            try {
+                return _context.Product.Where(x => x.Id == id && x.IsBeer == false)
                         .Include(x => x.Brewery)
                         .Include(x => x.Country)
                         .Include(x => x.Comments)
                             .ThenInclude(x => x.Account)
                         .Include(x => x.Votes);
+            }catch(Exception e) {
+                return null;
+            }
         }
     }
 }

@@ -22,11 +22,6 @@ namespace Service.Services
         }
 
         public bool AddVote(VoteDTO voteDTO, List<ClaimDTO> claims) {
-            //var vote = new Vote() {
-            //    AccountId =Convert.ToInt32(claims.First(x => x.Type == "nameidentifier").Value),
-
-            //};
-            //return _productRepository.AddVote()
             var authorId = Convert.ToInt32(claims.First(x => x.Type == "nameidentifier").Value);
             var vote = _mapper.Map<Vote>(voteDTO);
             vote.AccountId = authorId;
@@ -41,11 +36,22 @@ namespace Service.Services
             List<ProductDTO> results = new List<ProductDTO>();
             if (isBeer) {
                 var temp = _productRepository.GetAllBeers(page, itemsOnPage);
-                foreach (var obj in temp)
-                    results.Add(_mapper.Map<ProductDTO>(obj));
+                if (temp == null)
+                    return null;
+                foreach (var obj in temp) {
+                    List<BeerTypeBeerDTO> list = new List<BeerTypeBeerDTO>();
+                    foreach (var beerTypeBeer in obj.BeerTypeBeers)
+                        list.Add(_mapper.Map<BeerTypeBeerDTO>(beerTypeBeer));
+                    var productDTO = _mapper.Map<ProductDTO>(obj);
+                    productDTO.Beer.BeerTypeBeerDTO = list;
+                    results.Add(productDTO);
+                }
+                    
                 
             } else {
                 var res = _productRepository.GetAllBreweries(page, itemsOnPage);
+                if (res == null)
+                    return null;
                 foreach (var obj in res)
                     results.Add(_mapper.Map<ProductDTO>(obj));
             }
@@ -53,11 +59,25 @@ namespace Service.Services
         }
 
         public ProductDTO GetBeerById(int id) {
-            return _mapper.Map<ProductDTO>(_productRepository.GetBeerById(id).First());
+            try {
+                var resultDb = _productRepository.GetBeerById(id).First();
+                List<BeerTypeBeerDTO> list = new List<BeerTypeBeerDTO>();
+                foreach (var beerTypeBeer in resultDb.BeerTypeBeers)
+                    list.Add(_mapper.Map<BeerTypeBeerDTO>(beerTypeBeer));
+                var result = _mapper.Map<ProductDTO>(resultDb);
+                result.Beer.BeerTypeBeerDTO = list;
+                return result;
+            } catch (Exception e) {
+                return null;
+            }
         }
 
         public ProductDTO GetBreweryById(int id) {
-            return _mapper.Map<ProductDTO>(_productRepository.GetBreweryById(id).First());
+            try {
+                return _mapper.Map<ProductDTO>(_productRepository.GetBreweryById(id).First());
+            }catch(Exception e) {
+                return null;
+            }
         }
     }
 }

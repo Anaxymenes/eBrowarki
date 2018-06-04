@@ -22,22 +22,34 @@ namespace WebAPI.Controllers
 
         [HttpGet("getBeer/{id}")]
         public IActionResult GetBeerById(int id) {
-            return Ok(_productService.GetBeerById(id));
+            var result = _productService.GetBeerById(id);
+            if (result == null)
+                return BadRequest();
+            return Ok(result);
         }
 
         [HttpGet("getBrewery/{id}")]
         public IActionResult GetBreweryById(int id) {
-            return Ok(_productService.GetBreweryById(id));
+            var result = _productService.GetBreweryById(id);
+            if (result == null)
+                return BadRequest();
+            return Ok(result);
         }
 
         [HttpGet("getAllBeers/{itemsOnPage}/{page}")]
         public IActionResult GetAllBeers(int page, int itemsOnPage) {
-            return Ok(_productService.GetAllProductByType(true, page, itemsOnPage));
+            var result = _productService.GetAllProductByType(true, page, itemsOnPage);
+            if (result == null)
+                return BadRequest();
+            return Ok(result);
         }
 
         [HttpGet("getAllBrewery/{itemsOnPage}/{page}")]
         public IActionResult GetAllBreweries(int page, int itemsOnPage) {
-            return Ok(_productService.GetAllProductByType(false, page, itemsOnPage));
+            var result = _productService.GetAllProductByType(false, page, itemsOnPage);
+            if (result == null)
+                return BadRequest();
+            return Ok(result);
         }
         [Authorize]
         [HttpPost("addVote")]
