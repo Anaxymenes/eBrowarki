@@ -179,6 +179,8 @@ namespace Service.Config
                 opt => opt.MapFrom(src => src.ProductId))
                 .ForMember(dest => dest.Content,
                 opt => opt.MapFrom(src => src.Content))
+                .ForMember(dest => dest.Date,
+                opt => opt.UseValue(DateTime.Now))
                 ;
 
             CreateMap<CommentEdit, Comment>()
@@ -298,6 +300,13 @@ namespace Service.Config
                 opt => opt.MapFrom(src => src.Name))
                 .ForMember(dest => dest.value,
                 opt => opt.MapFrom(src => src.Id))
+                ;
+
+            CreateMap<VoteDTO, Vote>()
+                .ForMember(dest => dest.ProductId,
+                opt => opt.MapFrom(src => src.ProductId))
+                .ForMember(dest => dest.VoteValue,
+                opt => opt.MapFrom(src => src.Value))
                 ;
         }
     }
