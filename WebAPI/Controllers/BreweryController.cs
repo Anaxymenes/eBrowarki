@@ -26,7 +26,11 @@ namespace WebAPI.Controllers
             if (_breweryService.Add(breweryAdd, ClaimsMethods.GetClaimsList(HttpContext.User.Claims)))
                 return Ok();
             return BadRequest();
-            //return Ok(claims);
+        }
+
+        [HttpPut]
+        public IActionResult Edit([FromBody] ProductDTO breweryDTO) {
+            return BadRequest();
         }
     }
 }
