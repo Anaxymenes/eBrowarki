@@ -288,9 +288,9 @@ namespace Service.Config
                 opt => opt.MapFrom(src => src.Id))
                 ;
 
-            CreateMap<Brewery, BreweryFormList>()
+            CreateMap<Product, BreweryFormList>()
                 .ForMember(dest => dest.text,
-                opt => opt.MapFrom(src => src.Product.Name))
+                opt => opt.MapFrom(src => src.Name))
                 .ForMember(dest => dest.value,
                 opt => opt.MapFrom(src => src.Id))
                 ;
