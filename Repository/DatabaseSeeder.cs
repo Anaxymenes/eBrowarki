@@ -1229,6 +1229,56 @@ namespace Repository
                         ProductId = context.Product.First(x=>x.Picture=="ciechanMiodowe.png").Id,
                         VoteValue = 4,
                     },
+                    new Vote{
+                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        ProductId = context.Product.First(x=>x.Picture=="carlsbergSpZoo.png").Id,
+                        VoteValue = 4,
+                    },
+                    new Vote{
+                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        ProductId = context.Product.First(x=>x.Picture=="carlsbergSpZoo.png").Id,
+                        VoteValue = 5,
+                    },
+                    new Vote{
+                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        ProductId = context.Product.First(x=>x.Picture=="kompaniaPiwowarska.png").Id,
+                        VoteValue = 3,
+                    },
+                    new Vote{
+                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        ProductId = context.Product.First(x=>x.Picture=="kompaniaPiwowarska.png").Id,
+                        VoteValue = 4,
+                    },
+                    new Vote{
+                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        ProductId = context.Product.First(x=>x.Picture=="vph.png").Id,
+                        VoteValue = 4,
+                    },
+                    new Vote{
+                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        ProductId = context.Product.First(x=>x.Picture=="vph.png").Id,
+                        VoteValue = 4,
+                    },
+                    new Vote{
+                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        ProductId = context.Product.First(x=>x.Picture=="browaryRegionalneJakubiak.png").Id,
+                        VoteValue = 5,
+                    },
+                    new Vote{
+                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        ProductId = context.Product.First(x=>x.Picture=="browaryRegionalneJakubiak.png").Id,
+                        VoteValue = 5,
+                    },
+                    new Vote{
+                        AccountId = context.Account.First(x=>x.Username == "user").Id,
+                        ProductId = context.Product.First(x=>x.Picture=="grupaZywiec.png").Id,
+                        VoteValue = 1,
+                    },
+                    new Vote{
+                        AccountId = context.Account.First(x=>x.Username == "admin").Id,
+                        ProductId = context.Product.First(x=>x.Picture=="grupaZywiec.png").Id,
+                        VoteValue = 4,
+                    },
                 };
                 context.AddRange(voteList);
                 context.SaveChanges();
