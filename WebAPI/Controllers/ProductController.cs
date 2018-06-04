@@ -1,6 +1,9 @@
-﻿using Data.DTO.Add;
+﻿using Data.DTO;
+using Data.DTO.Add;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Service.Interfaces;
+using Service.utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +38,13 @@ namespace WebAPI.Controllers
         [HttpGet("getAllBrewery/{itemsOnPage}/{page}")]
         public IActionResult GetAllBreweries(int page, int itemsOnPage) {
             return Ok(_productService.GetAllProductByType(false, page, itemsOnPage));
+        }
+        [Authorize]
+        [HttpPost("addVote")]
+        public IActionResult AddVote([FromBody]VoteDTO voteDTO) {
+            if (_productService.AddVote(voteDTO, ClaimsMethods.GetClaimsList(HttpContext.User.Claims)) == true)
+                return Ok();
+            return BadRequest();
         }
 
 

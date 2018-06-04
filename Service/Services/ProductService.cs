@@ -21,6 +21,15 @@ namespace Service.Services
             _mapper = mapper;
         }
 
+        public bool AddVote(VoteDTO voteDTO, List<ClaimDTO> claims) {
+            //var vote = new Vote() {
+            //    AccountId =Convert.ToInt32(claims.First(x => x.Type == "nameidentifier").Value),
+
+            //};
+            //return _productRepository.AddVote()
+            return false;
+        }
+
         public List<ProductDTO> GetAllProductByType(bool isBeer, int page, int itemsOnPage) {
             List<ProductDTO> results = new List<ProductDTO>();
             if (isBeer) {
